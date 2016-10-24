@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A4F3C4D9-E399-41A8-996B-5AF509F5E17C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotNet.BLL</RootNamespace>
+    <AssemblyName>DotNet.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseBll.cs" />
+    <Compile Include="BllTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BllTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PermissButtonBll.cs" />
+    <Compile Include="PermissDepartmentBll.cs" />
+    <Compile Include="PermissMenuBll.cs" />
+    <Compile Include="PermissRefUserDepartmentBll.cs" />
+    <Compile Include="PermissRoleBll.cs" />
+    <Compile Include="PermissUserLoginBll.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PermissRefMenuButtonBll.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BllTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BllTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="Spring_BLLObjects.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Spring_BLLObjects.xml</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Spring_BLLObjects.xml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Spring_BLLObjects.tt</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNet.Common\DotNet.Common.csproj">
+      <Project>{EC9C0F52-C3F6-4AD7-A75B-944C7391E020}</Project>
+      <Name>DotNet.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.DBProvide\DotNet.DBProvide.csproj">
+      <Project>{10A0FEC6-DC48-4A67-B8C8-61A3D05A915B}</Project>
+      <Name>DotNet.DBProvide</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Entity\DotNet.Entity.csproj">
+      <Project>{029B039E-7916-40AA-A8B9-029540752B8B}</Project>
+      <Name>DotNet.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.IBLL\DotNet.IBLL.csproj">
+      <Project>{F8F274A6-98F5-4BC9-ABF4-30A1AFECD53A}</Project>
+      <Name>DotNet.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.IDAL\DotNet.IDAL.csproj">
+      <Project>{D01F6B84-EC60-4EA0-A2AE-A1C6F838A838}</Project>
+      <Name>DotNet.IDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

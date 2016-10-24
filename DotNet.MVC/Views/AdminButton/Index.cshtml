@@ -1,0 +1,190 @@
+﻿@using DotNet.Entity
+@{
+    Layout = null;
+}
+@{
+    List<PermissButton> buttonList = (List<PermissButton>)ViewData["ButtonList"];
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>按钮管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link href="~/Content/ionicons.min.css" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="~/Content/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/plugins/iCheck/all.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/Content/dist/css/AdminLTE.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="~/Content/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="~/Scripts/html5shiv.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+        <![endif]-->
+
+</head>
+<body>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            @*<a href="javascript:void(0)" class="btn btn-app" data-toggle="modal" data-target="#AddModal">
+                                    <i class="fa fa-edit"></i> 添加
+                                </a>*@
+                            <a href="javascript:void(0)" class="btn btn-app" onclick="AdminButton_Add()">
+                                <i class="fa fa-edit"></i> 添加
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-app" onclick="AdminButton_Edit()">
+                                <i class="fa fa-edit"></i> 修改
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-app" onclick="AdminButton_Delete()">
+                                <i class="fa fa-edit"></i> 删除
+                            </a>
+                        </h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="buttonTable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>名称</th>
+                                    <th>图标</th>
+                                    <th>顺序</th>
+                                    <th>添加日期</th>
+                                    <th>请求方式</th>
+                                    <th>控制器方法名</th>
+                                    <th>描述</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in buttonList)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="checkId" class="checkboxId" value="@item.Id">
+                                        </td>
+                                        <td>@item.Name</td>
+                                        <td><i class="fa @item.Icon"></i></td>
+                                        <td>@item.Sort</td>
+                                        <td>@item.AddDate</td>
+                                        <td>@item.HttpMethod</td>
+                                        <td>@item.ActionNameCode</td>
+                                        <td>@item.Description</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            @*<tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th>名称</th>
+                                        <th>图标</th>
+                                        <th>顺序</th>
+                                        <th>添加日期</th>
+                                        <th>请求方式</th>
+                                        <th>控制器方法名</th>
+                                        <th>描述</th>
+                                    </tr>
+                                </tfoot>*@
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+
+    <div id="AddModal" class="modal" data-easein="fadeInDown" data-easeout="fadeOutDown" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 400px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">添加按钮</h4>
+                </div>
+                <div class="modal-body">
+                        @using (@Html.BeginForm("Add", "AdminButton", FormMethod.Post, new {role = "form"}))
+                        {
+                            <div class="box-body">
+                                @Html.InPutTag("名称", "ButtonName", "按钮名称")
+                                @Html.InPutTag("图标", "ButtonIcon", "图标代码")
+                                @Html.InPutTag("顺序", "ButtonSort", "顺序", "number")
+                                @Html.SelectTag("请求方式", "ButtonHttpMethod", new Dictionary<string, string> {{"Get", "Get"}, {"Post", "Post"}})
+                                @Html.InPutTag("方法名称", "ButtonActionName", "对应控制器方法名称")
+                                @Html.InPutTag("描述", "ButtonDesc", "描述信息")
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer" style="text-align: center">
+                                <button type="submit" class="btn btn-primary">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button id="addReset" type="reset" class="btn btn-info">重置</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" onclick=" $('#addReset').click() ">关闭</button>
+                            </div>
+                        }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="EditModal" class="modal" data-easein="fadeInDown" data-easeout="fadeOutDown" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 400px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">修改按钮</h4>
+                </div>
+                <div class="modal-body">
+                    @using (@Html.BeginForm("Edit", "AdminButton",FormMethod.Post,new {role="form"}))
+                    {
+                        <div class="box-body">
+                            <input type="hidden" id="hideId" name="hideId" value="" />
+                            @Html.EditInPutTag("名称", "EditButtonName")
+                            @Html.EditInPutTag("图标", "EditButtonIcon")
+                            @Html.EditInPutTag("顺序",  "EditButtonSort","number")
+                            @Html.SelectTag("请求方式", "EditButtonHttpMethod", new Dictionary<string, 
+                           string> { { "Get", "Get" }, { "Post", "Post" } })
+                            @Html.EditInPutTag("方法名称", "EditButtonActionName")
+                            @Html.EditInPutTag("描述", "EditButtonDesc")
+                        </div><!-- /.box-body -->
+                        <div class="box-footer" style="text-align: center">
+                            <button type="submit" class="btn btn-primary">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/Content/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/Content/bootstrap/js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+    <script src="~/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="~/Content/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/dist/js/demo.js"></script>
+    <script src="~/Content/plugins/iCheck/icheck.min.js"></script>
+    @*该页面的专属脚本*@
+    <script src="~/Scripts/PageScript/AdminButtonScript.js"></script>
+</body>
+</html>

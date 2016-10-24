@@ -1,0 +1,211 @@
+﻿@model IEnumerable<DotNet.MVC.Models.RoleViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>角色管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link href="~/Content/ionicons.min.css" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="~/Content/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/plugins/iCheck/all.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/Content/dist/css/AdminLTE.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="~/Content/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Content/css/BootStrapTree.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="~/Scripts/html5shiv.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+        <![endif]-->
+
+</head>
+<body>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            <a href="javascript:void(0)" class="btn btn-app" onclick="AdminRole_Add()">
+                                <i class="fa fa-edit"></i> 添加
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-app" onclick="AdminRole_Edit()">
+                                <i class="fa fa-edit"></i> 修改
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-app" onclick=" AdminRole_Delete() ">
+                                <i class="fa fa-edit"></i> 删除
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-app" onclick=" AdminRole_SetRoleButtons() ">
+                                <i class="fa fa-edit"></i> 角色授权
+                            </a>
+                        </h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="menuTable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>角色名</th>
+                                    <th>所属部门</th>
+                                    <th>添加日期</th>
+                                    <th>修改日期</th>
+                                    <th>描述</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="checkId" class="checkboxId" value="@item.Id">
+                                        </td>
+                                        <td>@item.RoleName</td>
+                                        <td>@item.Department</td>
+                                        <td>@item.AddDate</td>
+                                        <td>@item.ModifyDate</td>
+                                        <td>@item.Description</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+</section><!-- /.content -->
+    <input type="hidden" name="addOrEdit" id="addOrEdit" value="" />
+    <div id="AddModal" class="modal" data-easein="fadeInDown" data-easeout="fadeOutDown" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 400px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">添加角色</h4>
+                </div>
+                <div class="modal-body">
+                    @using (Ajax.BeginForm("Add", new AjaxOptions
+                    {
+                        OnBegin = "beginAdd",
+                        OnComplete = "completeAdd"
+                    }))
+                    {
+                        <div class="box-body">
+                            @Html.InPutTag("名称", "RoleName", "角色的名称")
+                            <div class="form-group">
+                                <label for="RoleDepId">所属部门</label>
+                                <input class="form-control" type="text" disabled="disabled" id="RoleDepId" name="RoleDepId" value="" placeholder="角色所属的部门"/>
+                                <input class="form-control" type="button" name="btnDep" id="btnDep" value="选择"/>
+                            </div>
+                            <input type="hidden" name="idList" id="idList" value="" />
+                            <div class="form-group">
+                                <label for="RoleDesc">描述</label>
+                                <textarea class="form-control" id="RoleDesc" name="RoleDesc" placeholder="角色的描述"></textarea>
+                            </div>
+                        </div>
+                    <!-- /.box-body -->
+                        <div class="box-footer" style="text-align: center">
+                            <button type="submit" id="btnSub" class="btn btn-primary">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="addReset" type="reset" class="btn btn-info">重置</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" onclick=" $('#addReset').click(); ClearDepTreeSelected();">关闭</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="EditModal" class="modal" data-easein="fadeInDown" data-easeout="fadeOutDown" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 400px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">修改角色</h4>
+                </div>
+                <div class="modal-body">
+                    @using (Ajax.BeginForm("Edit", new AjaxOptions
+                    {
+                        OnBegin = "beginEdit",
+                        OnComplete = "completeEdit"
+                    }))
+                    {
+                        <div class="box-body">
+                            <input type="hidden" name="RoleId" id="RoleId" value="" />
+                            @Html.EditInPutTag("名称", "EditRoleName")
+                            <div class="form-group">
+                                <label for="DepName">所属部门</label>
+                                <input class="form-control" type="text" disabled="disabled" id="DepName" name="DepName" value="" placeholder="角色所属的部门"/>
+                                <input class="form-control" type="button" id="btnDepEdit" value="选择"/>
+                            </div>
+                            <input type="hidden" name="DepId" id="DepId" value="-1"/>
+                            <div class="form-group">
+                                <label for="EditRoleDesc">描述</label>
+                                <textarea class="form-control" id="EditRoleDesc" name="EditRoleDesc" placeholder="角色的描述"></textarea>
+                            </div>
+                        </div>
+                    <!-- /.box-body -->
+                        <div class="box-footer" style="text-align: center">
+                            <button type="submit" id="btnSubEdit" class="btn btn-primary">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true" onclick="ClearDepTreeSelected();">关闭</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="AddModalDep" class="modal" data-easein="fadeInDown" data-easeout="fadeOutDown" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 500px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">添加角色</h4>
+                </div>
+                <div class="modal-body tree well">
+                    @Html.Raw(ViewData["depTree"])
+                </div>
+                <div class="box-footer" style="text-align: center">
+                    <button type="button" id="btnOk" class="btn btn-primary">确定</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/Content/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/Content/bootstrap/js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+    <script src="~/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="~/Content/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/dist/js/demo.js"></script>
+    @*异步提交表单*@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @*该页面的专属脚本*@
+    <script src="~/Scripts/PageScript/AdminRoleScript.js"></script>
+    <script src="~/Scripts/UtilityScript/BoostStrapTree.js"></script>
+</body>
+</html>

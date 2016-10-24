@@ -1,0 +1,128 @@
+ ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  \n----------------------header--------------------------  ----------------------footer--------------------------\n  \n----------------------header--------------------------  ----------------------footer--------------------------\n  \n----------------------header-------------------------- 2016-04-14 21:54:02,556 [6] ERROR WebLogger - System.Web.HttpException (0x80004005): 未找到路径“/”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header-------------------------- 2016-04-14 21:56:21,175 [7] ERROR WebLogger - Spring.Core.CannotLoadObjectTypeException: Cannot resolve type [DotNet.MVC.Controllers.Admin.AdminHomeController,DotNet.MVC] for object with name 'DotNet.MVC.Controllers.Admin.AdminHomeController,DotNet.MVC#0' defined in file [D:\Code\DotNet\DotNet.MVC\Config\Spring_BLL_Controllers.xml] line 10 ---> System.TypeLoadException: 未能从程序集“DotNet.MVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null”中加载类型“DotNet.MVC.Controllers.Admin.AdminHomeController”。
+   在 System.Reflection.RuntimeAssembly.GetType(RuntimeAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type)
+   在 System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   在 Spring.Core.TypeResolution.TypeResolver.LoadTypeDirectlyFromAssembly(TypeAssemblyHolder typeInfo) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Core\TypeResolution\TypeResolver.cs:行号 115
+   在 Spring.Core.TypeResolution.TypeResolver.Resolve(String typeName) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Core\TypeResolution\TypeResolver.cs:行号 75
+   在 Spring.Core.TypeResolution.GenericTypeResolver.Resolve(String typeName) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Core\TypeResolution\GenericTypeResolver.cs:行号 91
+   在 Spring.Core.TypeResolution.CachedTypeResolver.Resolve(String typeName) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Core\TypeResolution\CachedTypeResolver.cs:行号 107
+   在 Spring.Core.TypeResolution.TypeResolutionUtils.ResolveType(String typeName) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Core\TypeResolution\TypeResolutionUtils.cs:行号 101
+   在 Spring.Objects.Factory.Support.AbstractObjectDefinition.ResolveObjectType() 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractObjectDefinition.cs:行号 706
+   在 Spring.Objects.Factory.Support.AbstractObjectFactory.ResolveObjectType(RootObjectDefinition rod, String objectName) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractObjectFactory.cs:行号 1198
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 Spring.Objects.Factory.Support.AbstractObjectFactory.ResolveObjectType(RootObjectDefinition rod, String objectName) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractObjectFactory.cs:行号 1206
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.PredictObjectType(String objectName, RootObjectDefinition mod) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 160
+   在 Spring.Objects.Factory.Support.DefaultListableObjectFactory.DoGetObjectNamesForType(Type type, Boolean includeNonSingletons, Boolean allowEagerInit) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\DefaultListableObjectFactory.cs:行号 1060
+   在 Spring.Objects.Factory.Support.DefaultListableObjectFactory.GetObjectNamesForType(Type type) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\DefaultListableObjectFactory.cs:行号 680
+   在 Spring.Context.Support.AbstractApplicationContext.GetObjectNamesForType(Type type) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Context\Support\AbstractApplicationContext.cs:行号 1264
+   在 Spring.Web.Mvc.SpringMvcDependencyResolver.GetService(Type serviceType) 位置 c:\_prj\spring-net\src\Spring\Spring.Web.Mvc3\SpringMvcDependencyResolver.cs:行号 108
+   在 System.Web.Http.Services.DefaultServices.GetService(Type serviceType)
+   在 System.Web.Http.ServicesExtensions.GetService[TService](ServicesContainer services)
+   在 System.Web.Http.WebHost.HttpControllerHandler.<.cctor>b__1f()
+   在 System.Lazy`1.CreateValue()
+   在 System.Lazy`1.LazyInitValue()
+   在 System.Lazy`1.get_Value()
+   在 System.Web.Http.WebHost.HttpControllerHandler.ConvertRequest(HttpContextBase httpContextBase)
+   在 System.Web.Http.WebHost.Routing.HttpContextBaseExtensions.GetOrCreateHttpRequestMessage(HttpContextBase context)
+   在 System.Web.Http.WebHost.Routing.HttpWebRoute.GetRouteData(HttpContextBase httpContext)
+   在 System.Web.Routing.RouteCollection.GetRouteData(HttpContextBase httpContext)
+   在 System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   在 System.Web.Routing.UrlRoutingModule.OnApplicationPostResolveRequestCache(Object sender, EventArgs e)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header-------------------------- 2016-04-14 22:01:00,333 [7] ERROR WebLogger - System.Web.HttpException (0x80004005): 未找到路径“/”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header-------------------------- 2016-04-14 22:10:15,553 [31] ERROR WebLogger - System.Web.HttpException (0x80004005): 未找到路径“/603b4ec2a29f4b81a4e01fe6ef565644/arterySignalR/ping”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ ----------------------footer--------------------------  ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header-------------------------- 2016-04-14 22:18:46,412 [53] ERROR WebLogger - System.InvalidOperationException: 支持“DotNetEntities”上下文的模型已在数据库创建后发生更改。请考虑使用 Code First 迁移更新数据库(http://go.microsoft.com/fwlink/?LinkId=238269)。
+   在 System.Data.Entity.CreateDatabaseIfNotExists`1.InitializeDatabase(TContext context)
+   在 System.Data.Entity.Internal.InternalContext.<>c__DisplayClasse`1.<CreateInitializationAction>b__d()
+   在 System.Data.Entity.Internal.InternalContext.PerformInitializationAction(Action action)
+   在 System.Data.Entity.Internal.InternalContext.PerformDatabaseInitialization()
+   在 System.Data.Entity.Internal.LazyInternalContext.<InitializeDatabase>b__4(InternalContext c)
+   在 System.Data.Entity.Internal.RetryAction`1.PerformAction(TInput input)
+   在 System.Data.Entity.Internal.LazyInternalContext.InitializeDatabaseAction(Action`1 action)
+   在 System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase()
+   在 System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   在 System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   在 System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   在 System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   在 System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   在 DotNet.DAL.Base.BaseDal`1.ORMLoadEntities(Expression`1 whereLambda) 位置 d:\Code\DotNet\DotNet.DAL\Base\BaseDal.cs:行号 357
+   在 DotNet.BLL.BaseBll`1.ORMLoadEntities(Expression`1 whereLambda) 位置 d:\Code\DotNet\DotNet.BLL\BaseBll.cs:行号 302
+   在 DotNet.MVC.Controllers.Admin.AdminHomeController.Index() 位置 d:\Code\DotNet\DotNet.MVC\Controllers\Admin\AdminHomeController.cs:行号 18
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__36(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass45.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3e()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2f(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header-------------------------- 2016-04-14 22:20:23,163 [7] ERROR WebLogger - System.Web.HttpException (0x80004005): 未找到路径“/”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ ----------------------header--------------------------  ----------------------footer--------------------------  ----------------------header-------------------------- 2016-04-14 22:20:38,201 [7] ERROR WebLogger - System.Web.HttpException (0x80004005): 未找到路径“/”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

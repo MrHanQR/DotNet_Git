@@ -1,0 +1,201 @@
+﻿@model DotNet.MVC.Models.UserDetailsViewModel
+<style>
+    table {
+        border: 1px solid gainsboro
+    }
+    td {
+        border: 1px gainsboro solid
+    }
+</style>
+<table>
+    <tr>
+        <td rowspan="4"><img src="~/Content/images/UserHeadPhoto/@Html.Raw(Model.PhotoPath)" alt="Alternate Text" /></td>
+        <td style="width: 85px">用户名</td>
+        <td>@Html.Raw(Model.UserName)</td>
+        <td style="width: 85px">是否可用</td>
+        <td>@Html.Raw(Model.IsAble)</td>
+    </tr>
+    <tr>
+        <td>账号</td>
+        <td>@Html.Raw(Model.LoginId)</td>
+        <td>密码</td>
+        <td>@Html.Raw(Model.LoginPwd)</td>
+    </tr>
+    <tr>
+        <td>申请日期</td>
+        <td>@Html.Raw(Model.ApplyDate)</td>
+        <td>添加日期</td>
+        <td>@Html.Raw(Model.AddDate)</td>
+    </tr>
+    <tr>
+        <td>标识Id</td>
+        <td colspan="3">@Html.Raw(Model.Id)</td>
+    </tr>
+    <tr>
+        <td>个性签名</td>
+        <td colspan="4">@Html.Raw(Model.ShortDescription)</td>
+    </tr>
+    <tr>
+        <td>真实姓名</td>
+        <td colspan="2">@Html.Raw(Model.RealName)</td>
+        <td>性别</td>
+        <td>@Html.Raw(Model.Gender)</td>
+    </tr>
+    <tr>
+        <td>出生日期</td>
+        <td colspan="2">@Html.Raw(Model.Birth)</td>
+        <td>身份证号</td>
+        <td>@Html.Raw(Model.IdentityCardNumber)</td>
+    </tr>
+    <tr>
+        <td>联系方式</td>
+        <td colspan="2">@Html.Raw(Model.PhoneNumber)</td>
+        <td>住址</td>
+        <td>@Html.Raw(Model.Address)</td>
+    </tr>
+    <tr>
+        <td>描述</td>
+        <td colspan="4">@Html.Raw(Model.Description)</td>
+    </tr>
+</table>
+
+@*<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginPwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginPwd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAble)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAble)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeleteFlag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeleteFlag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RealName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RealName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentityCardNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdentityCardNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>*@

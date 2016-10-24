@@ -1,0 +1,137 @@
+﻿@model IEnumerable<DotNet.Entity.PermissUserLogin>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>以往用户</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link href="~/Content/ionicons.min.css" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="~/Content/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/plugins/iCheck/all.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/Content/dist/css/AdminLTE.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="~/Content/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="~/Scripts/html5shiv.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+        <![endif]-->
+
+</head>
+<body>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            <a href="javascript:void(0)" class="btn btn-app" onclick=" AdminUser_Restore() ">
+                                <i class="fa fa-edit"></i> 恢复
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-app" onclick=" AdminUser_PhysicallyDelete() ">
+                                <i class="fa fa-edit"></i> 彻底删除
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-app" onclick=" AdminUser_Details() ">
+                                <i class="fa fa-edit"></i> 详细信息
+                            </a>
+                        </h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="menuTable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>头像</th>
+                                    <th>账号</th>
+                                    <th>密码</th>
+                                    <th>用户名</th>
+                                    <th>邮箱</th>
+                                    <th>账号申请日期</th>
+                                    <th>账号添加日期</th>
+                                    <th>是否可用</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="checkId" class="checkboxId" value="@item.Id">
+                                        </td>
+                                        <td><img class="img-responsive img-thumbnail" src="~/Content/images/UserHeadPhoto/@item.PhotoPath" alt="@item.UserName" /></td>
+                                        <td>@item.LoginId</td>
+                                        <td>@item.LoginPwd</td>
+                                        <td>@item.UserName</td>
+                                        <td>@item.UserEmail</td>
+                                        <td>@item.ApplyDate</td>
+                                        <td>@item.AddDate</td>
+                                        <td>@item.IsAble</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+                <div id="DitailModal" class="modal" data-easein="fadeInDown" data-easeout="fadeOutDown" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">详细信息</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div id="detailDiv" class="box-body">
+                                </div>
+                                <div class="box-footer" style="text-align: center">
+                                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">确定</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+    <!-- jQuery 2.1.4 -->
+    <script src="/Content/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/Content/bootstrap/js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+    <script src="~/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="~/Content/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/dist/js/demo.js"></script>
+    <script src="~/Content/plugins/iCheck/icheck.min.js"></script>
+    @*异步提交表单*@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @*该页面的专属脚本*@
+    <script src="~/Scripts/PageScript/AdminUserOld.js"></script>
+</body>
+</html>
