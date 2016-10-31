@@ -50,3 +50,6 @@ Temporary Items
 bin
 obj
 .suo
+.v12.suo
+*.suo
+*.suo
