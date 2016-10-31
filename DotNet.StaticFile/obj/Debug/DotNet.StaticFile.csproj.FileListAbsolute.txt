@@ -1,0 +1,5 @@
+D:\MyDocument\Code\DotNet_Git\DotNet.StaticFile\bin\DotNet.StaticFile.dll.config
+D:\MyDocument\Code\DotNet_Git\DotNet.StaticFile\bin\DotNet.StaticFile.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.StaticFile\bin\DotNet.StaticFile.pdb
+D:\MyDocument\Code\DotNet_Git\DotNet.StaticFile\obj\Debug\DotNet.StaticFile.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.StaticFile\obj\Debug\DotNet.StaticFile.pdb

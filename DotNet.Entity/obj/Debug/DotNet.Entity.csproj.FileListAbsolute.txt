@@ -1,0 +1,13 @@
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\bin\Debug\DotNet.Entity.dll.config
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\bin\Debug\DotNet.Entity.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\bin\Debug\DotNet.Entity.pdb
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\bin\Debug\EntityFramework.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\bin\Debug\EntityFramework.SqlServer.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\bin\Debug\MySql.Data.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\bin\Debug\MySql.Data.Entity.EF6.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\bin\Debug\EntityFramework.xml
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\bin\Debug\EntityFramework.SqlServer.xml
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\obj\Debug\DotNet.Entity.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\obj\Debug\DotNet.Entity.pdb
+D:\MyDocument\Code\DotNet_Git\DotNet.Entity\obj\Debug\DotNet.Entity.csprojResolveAssemblyReference.cache

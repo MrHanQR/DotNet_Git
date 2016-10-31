@@ -1,0 +1,11 @@
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\bin\Debug\DotNet.T4Model.dll.config
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\bin\Debug\DotNet.T4Model.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\bin\Debug\DotNet.T4Model.pdb
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\bin\Debug\EntityFramework.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\bin\Debug\EntityFramework.xml
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\obj\Debug\DotNet.T4Model.csprojResolveAssemblyReference.cache
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\obj\Debug\DotNet.T4Model.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.T4Model\obj\Debug\DotNet.T4Model.pdb

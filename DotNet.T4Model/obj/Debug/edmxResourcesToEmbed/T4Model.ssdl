@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DotNetT4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PermissButton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="8" />
+    <Property Name="Icon" Type="varchar" MaxLength="16" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="AddDate" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="HttpMethod" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="ActionNameCode" Type="varchar" MaxLength="24" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissDepartment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="ParentId" Type="uniqueidentifier" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="AddDate" Type="datetime" Nullable="false" />
+    <Property Name="HaveChild" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="ParentId" Type="uniqueidentifier" />
+    <Property Name="Icon" Type="varchar" MaxLength="16" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="AddDate" Type="datetime" Nullable="false" />
+    <Property Name="ControllerNameCode" Type="varchar" MaxLength="32" />
+    <Property Name="ActionNameCode" Type="varchar" MaxLength="32" />
+    <Property Name="HaveChild" Type="bit" />
+    <Property Name="MenuLevel" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissRefMenuButton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MenuId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ButtonId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissRefRoleMenuButton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MenuId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ButtonId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="PermissRefUserDepartment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DepartmentId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissRefUserMenuButton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsPass" Type="bit" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MenuButtonId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissRefUserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="AddDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifyDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissUserDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="RealName" Type="nvarchar" MaxLength="16" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="Birth" Type="datetime" />
+    <Property Name="IdentityCardNumber" Type="varchar" MaxLength="19" />
+    <Property Name="Address" Type="nvarchar" MaxLength="48" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="13" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="PermissUserLogin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="IsAble" Type="bit" Nullable="false" />
+    <Property Name="AddDate" Type="datetime" />
+    <Property Name="UserEmail" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="ApplyDate" Type="datetime" Nullable="false" />
+    <Property Name="DeleteFlag" Type="int" Nullable="false" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="40" />
+    <Property Name="LoginId" Type="varchar" MaxLength="24" Nullable="false" />
+    <Property Name="LoginPwd" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="PhotoPath" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="StateBug">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="UserIp" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="BugInfo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BugReply" Type="nvarchar(max)" />
+    <Property Name="BugDate" Type="datetime" Nullable="false" />
+    <Property Name="IfShow" Type="bit" Nullable="false" />
+    <Property Name="IfSolve" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateLoginLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="UserIp" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="Success" Type="bit" Nullable="false" />
+    <Property Name="LoginDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateOperateLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="24" Nullable="false" />
+    <Property Name="UserIp" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="OperateInfo" Type="nvarchar" MaxLength="64" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="IfSuccess" Type="bit" Nullable="false" />
+    <Property Name="OperateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DotNetT4ModelStoreContainer">
+    <EntitySet Name="PermissButton" EntityType="Self.PermissButton" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissDepartment" EntityType="Self.PermissDepartment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissMenu" EntityType="Self.PermissMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissRefMenuButton" EntityType="Self.PermissRefMenuButton" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissRefRoleMenuButton" EntityType="Self.PermissRefRoleMenuButton" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissRefUserDepartment" EntityType="Self.PermissRefUserDepartment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissRefUserMenuButton" EntityType="Self.PermissRefUserMenuButton" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissRefUserRole" EntityType="Self.PermissRefUserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissRole" EntityType="Self.PermissRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissUserDetails" EntityType="Self.PermissUserDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissUserLogin" EntityType="Self.PermissUserLogin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StateBug" EntityType="Self.StateBug" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StateLoginLog" EntityType="Self.StateLoginLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StateOperateLog" EntityType="Self.StateOperateLog" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

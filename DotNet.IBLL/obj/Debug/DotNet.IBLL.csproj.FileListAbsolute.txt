@@ -1,0 +1,10 @@
+D:\MyDocument\Code\DotNet_Git\DotNet.IBLL\bin\Debug\DotNet.IBLL.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.IBLL\bin\Debug\DotNet.IBLL.pdb
+D:\MyDocument\Code\DotNet_Git\DotNet.IBLL\bin\Debug\DotNet.Entity.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.IBLL\bin\Debug\EntityFramework.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.IBLL\bin\Debug\DotNet.Entity.pdb
+D:\MyDocument\Code\DotNet_Git\DotNet.IBLL\bin\Debug\EntityFramework.xml
+D:\MyDocument\Code\DotNet_Git\DotNet.IBLL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.IBLL\obj\Debug\DotNet.IBLL.csprojResolveAssemblyReference.cache
+D:\MyDocument\Code\DotNet_Git\DotNet.IBLL\obj\Debug\DotNet.IBLL.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.IBLL\obj\Debug\DotNet.IBLL.pdb

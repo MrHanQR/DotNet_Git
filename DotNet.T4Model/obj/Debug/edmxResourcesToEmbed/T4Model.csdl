@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DotNetT4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="T4ModelConn" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PermissButton" EntityType="DotNetT4Model.PermissButton" />
+    <EntitySet Name="PermissDepartment" EntityType="DotNetT4Model.PermissDepartment" />
+    <EntitySet Name="PermissMenu" EntityType="DotNetT4Model.PermissMenu" />
+    <EntitySet Name="PermissRefMenuButton" EntityType="DotNetT4Model.PermissRefMenuButton" />
+    <EntitySet Name="PermissRefRoleMenuButton" EntityType="DotNetT4Model.PermissRefRoleMenuButton" />
+    <EntitySet Name="PermissRefUserDepartment" EntityType="DotNetT4Model.PermissRefUserDepartment" />
+    <EntitySet Name="PermissRefUserMenuButton" EntityType="DotNetT4Model.PermissRefUserMenuButton" />
+    <EntitySet Name="PermissRefUserRole" EntityType="DotNetT4Model.PermissRefUserRole" />
+    <EntitySet Name="PermissRole" EntityType="DotNetT4Model.PermissRole" />
+    <EntitySet Name="PermissUserDetails" EntityType="DotNetT4Model.PermissUserDetails" />
+    <EntitySet Name="PermissUserLogin" EntityType="DotNetT4Model.PermissUserLogin" />
+    <EntitySet Name="StateBug" EntityType="DotNetT4Model.StateBug" />
+    <EntitySet Name="StateLoginLog" EntityType="DotNetT4Model.StateLoginLog" />
+    <EntitySet Name="StateOperateLog" EntityType="DotNetT4Model.StateOperateLog" />
+  </EntityContainer>
+  <EntityType Name="PermissButton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Icon" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="Sort" Type="Int32" Nullable="false" />
+    <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HttpMethod" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="ActionNameCode" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PermissDepartment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="ParentId" Type="Guid" />
+    <Property Name="Sort" Type="Int32" Nullable="false" />
+    <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="HaveChild" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="ParentId" Type="Guid" />
+    <Property Name="Icon" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="Sort" Type="Int32" Nullable="false" />
+    <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ControllerNameCode" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ActionNameCode" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="HaveChild" Type="Boolean" />
+    <Property Name="MenuLevel" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissRefMenuButton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="MenuId" Type="Guid" Nullable="false" />
+    <Property Name="ButtonId" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissRefRoleMenuButton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="RoleId" Type="Guid" Nullable="false" />
+    <Property Name="MenuId" Type="Guid" Nullable="false" />
+    <Property Name="ButtonId" Type="Guid" />
+  </EntityType>
+  <EntityType Name="PermissRefUserDepartment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="DepartmentId" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissRefUserMenuButton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="IsPass" Type="Boolean" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="MenuButtonId" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissRefUserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="RoleId" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="PermissUserDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="RealName" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Birth" Type="DateTime" Precision="3" />
+    <Property Name="IdentityCardNumber" Type="String" MaxLength="19" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="48" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PermissUserLogin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="IsAble" Type="Boolean" Nullable="false" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ApplyDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DeleteFlag" Type="Int32" Nullable="false" />
+    <Property Name="ShortDescription" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="LoginId" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Name="LoginPwd" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="PhotoPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StateBug">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="UserIp" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="BugInfo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BugReply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BugDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IfShow" Type="Boolean" Nullable="false" />
+    <Property Name="IfSolve" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateLoginLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="UserIp" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Success" Type="Boolean" Nullable="false" />
+    <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="StateOperateLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="UserIp" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="OperateInfo" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IfSuccess" Type="Boolean" Nullable="false" />
+    <Property Name="OperateDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

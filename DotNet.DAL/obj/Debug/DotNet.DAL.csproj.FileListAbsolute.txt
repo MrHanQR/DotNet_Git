@@ -1,0 +1,17 @@
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\obj\Debug\DotNet.DAL.csprojResolveAssemblyReference.cache
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\DotNet.DAL.dll.config
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\DotNet.DAL.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\DotNet.DAL.pdb
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\DotNet.Entity.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\DotNet.IDAL.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\EntityFramework.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\MySql.Data.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\Oracle.DataAccess.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\DotNet.Entity.pdb
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\DotNet.IDAL.pdb
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\EntityFramework.xml
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\obj\Debug\DotNet.DAL.dll
+D:\MyDocument\Code\DotNet_Git\DotNet.DAL\obj\Debug\DotNet.DAL.pdb
