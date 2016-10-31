@@ -71,13 +71,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Spring_BLLObjects.xml">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Spring_BLLObjects.tt</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DotNet.Common\DotNet.Common.csproj">
       <Project>{EC9C0F52-C3F6-4AD7-A75B-944C7391E020}</Project>
       <Name>DotNet.Common</Name>
@@ -98,6 +91,13 @@
       <Project>{D01F6B84-EC60-4EA0-A2AE-A1C6F838A838}</Project>
       <Name>DotNet.IDAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Spring_BLLObjects.xml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Spring_BLLObjects.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

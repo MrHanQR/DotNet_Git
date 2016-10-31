@@ -1,3 +1,4 @@
+D:\MyDocument\Code\DotNet_Git\DotNet.BLL\obj\Debug\DotNet.BLL.csprojResolveAssemblyReference.cache
 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\bin\Debug\DotNet.BLL.dll
 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\bin\Debug\DotNet.BLL.pdb
 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\bin\Debug\DotNet.Common.dll
@@ -28,6 +29,5 @@ D:\MyDocument\Code\DotNet_Git\DotNet.BLL\bin\Debug\DotNet.DAL.pdb
 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\bin\Debug\EntityFramework.xml
 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\bin\Debug\zh-Hans\EntityFramework.resources.dll
-D:\MyDocument\Code\DotNet_Git\DotNet.BLL\obj\Debug\DotNet.BLL.csprojResolveAssemblyReference.cache
 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\obj\Debug\DotNet.BLL.dll
 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\obj\Debug\DotNet.BLL.pdb

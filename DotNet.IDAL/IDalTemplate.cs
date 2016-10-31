@@ -2,6 +2,12 @@
   
 
 using DotNet.Entity;
+/**        数据访问接口类-自动生成
+ * 项目名：DotNet      程序集名：DotNet.IDAL
+ * 制作人：韩庆瑞      生成时间：10/31/2016 17:22:22
+ * 生成工具：T4模板
+ * 描述：
+**/
 namespace DotNet.IDAL
 {
 	public partial interface IPermissButtonDal :IBaseDal<PermissButton>

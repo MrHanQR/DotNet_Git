@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.T4Model", "DotNet.T4Model\DotNet.T4Model.csproj", "{3839DAFC-C5FF-4315-9215-7AE4C3F33435}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.Entity", "DotNet.Entity\DotNet.Entity.csproj", "{029B039E-7916-40AA-A8B9-029540752B8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.DAL", "DotNet.DAL\DotNet.DAL.csproj", "{478BA50E-4307-4F8B-9E5E-06E94A62B441}"
@@ -37,10 +35,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3839DAFC-C5FF-4315-9215-7AE4C3F33435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3839DAFC-C5FF-4315-9215-7AE4C3F33435}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3839DAFC-C5FF-4315-9215-7AE4C3F33435}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3839DAFC-C5FF-4315-9215-7AE4C3F33435}.Release|Any CPU.Build.0 = Release|Any CPU
 		{029B039E-7916-40AA-A8B9-029540752B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{029B039E-7916-40AA-A8B9-029540752B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{029B039E-7916-40AA-A8B9-029540752B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -82,7 +76,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3839DAFC-C5FF-4315-9215-7AE4C3F33435} = {22732BAA-9CEF-43B5-9E51-9AF2D75D17A6}
 		{029B039E-7916-40AA-A8B9-029540752B8B} = {22732BAA-9CEF-43B5-9E51-9AF2D75D17A6}
 		{478BA50E-4307-4F8B-9E5E-06E94A62B441} = {4B062725-FA09-4F06-9558-B09E03E679E4}
 		{D01F6B84-EC60-4EA0-A2AE-A1C6F838A838} = {4B062725-FA09-4F06-9558-B09E03E679E4}

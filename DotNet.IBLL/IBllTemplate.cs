@@ -2,6 +2,12 @@
   
 
 using DotNet.Entity;
+/**        业务逻辑接口类-自动生成
+ * 项目名：DotNet      程序集名：DotNet.IBLL
+ * 制作人：韩庆瑞      生成时间：10/31/2016 17:22:32
+ * 生成工具：T4模板
+ * 描述：
+**/
 namespace DotNet.IBLL
 {
 	public partial interface IPermissButtonBll :IBaseBll<PermissButton>

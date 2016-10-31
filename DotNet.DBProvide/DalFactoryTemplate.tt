@@ -3,36 +3,24 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data.SqlClient" #>  
+<#@ import namespace="System.Data" #>  
 <#@ include file="EF.Utility.CS.ttinclude"#>
 <#@ output extension=".cs"#>
-<#
-CodeGenerationTools code = new CodeGenerationTools(this);
-MetadataLoader loader = new MetadataLoader(this);
-CodeRegion region = new CodeRegion(this, 1);
-MetadataTools ef = new MetadataTools(this);
-string inputFile = @"..\DotNet.T4Model\\T4Model.edmx";
-
-EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
-string namespaceName = code.VsNamespaceSuggestion();
-
-EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
-
-#>
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DotNet.IDAL;
 using System.Reflection;
-
+/**        数据访问层工厂类-自动生成
+ * 项目名：DotNet      程序集名：DotNet.DBProvide
+ * 制作人：韩庆瑞      生成时间：<#=DateTime.Now #>
+ * 生成工具：T4模板
+ * 描述：
+**/
 namespace DotNet.DBProvide
 {
     public partial class DalFactory
 	{
 		 //抽象工厂
-        private static readonly string AssemblyName = "";
+        private static readonly string AssemblyName ;
 
         static DalFactory()
         {
@@ -40,21 +28,32 @@ namespace DotNet.DBProvide
         } 
    
 <#
-// Emit Entity Types
-
-foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
-{
-    //fileManager.StartNewFile("I"+entity.Name + "Dal.cs");
-    //BeginNamespace(namespaceName, code);    
-#>			
-	public static I<#=entity.Name#>Dal Get<#=entity.Name#>Dal()
+	//查询数据库中所有的表(不包括EF迁移记录__MigrationHistory)，拿到类名，生成模板
+	string connectionString = "data source=.;initial catalog=DotNet;user id=sa;password=123";
+	string commandText="SELECT name AS TableName FROM sysobjects  WHERE type='U'";//SqlServer
+	SqlConnection conn = new SqlConnection(connectionString);
+	conn.Open();
+	SqlCommand command = new SqlCommand(commandText,conn);
+	SqlDataReader reader=command.ExecuteReader(CommandBehavior.CloseConnection);
+	List<string> TableNameList=new List<string>();
+    if (reader.HasRows)
+    {
+        while (reader.Read())
+        {
+	         TableNameList.Add(reader[0].ToString());
+        }
+    }
+	TableNameList.Remove("__MigrationHistory");
+    foreach (var item in TableNameList)
+    {#>
+	    public static I<#=item#>Dal Get<#=item#>Dal()
         {
             //抽象工厂模式——利用反射
-            object obj = Assembly.Load(AssemblyName).CreateInstance(AssemblyName + ".<#=entity.Name#>Dal", true);
-            return obj as I<#=entity.Name#>Dal;
+            object obj = Assembly.Load(AssemblyName).CreateInstance(AssemblyName + ".<#=item#>Dal", true);
+            return obj as I<#=item#>Dal;
             //没用缓存
-        }
-	 
-<#}#>	 
-	}
+        } 
+<#}
+#>
+}
 }

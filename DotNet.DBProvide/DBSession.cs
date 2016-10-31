@@ -1,14 +1,19 @@
-﻿
+﻿  
+  
+
 using DotNet.IDAL;
 using DotNet.DAL.Factory;
-
+/**        数据库会话类-自动生成
+ * 项目名：DotNet      程序集名：DotNet.DBProvide
+ * 制作人：韩庆瑞      生成时间：10/31/2016 17:22:28
+ * 生成工具：T4模板
+ * 描述：
+**/
 namespace DotNet.DBProvide
 {
     public partial class DBSession:IDBSession
-	{
-   
-	
-		private IPermissButtonDal _PermissButtonDal;
+	{   
+	    private IPermissButtonDal _PermissButtonDal;
 		public IPermissButtonDal PermissButtonDal
 		{
 			get
@@ -19,10 +24,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissButtonDal;
 			}
-
 		}
-	
-		private IPermissDepartmentDal _PermissDepartmentDal;
+	    private IPermissDepartmentDal _PermissDepartmentDal;
 		public IPermissDepartmentDal PermissDepartmentDal
 		{
 			get
@@ -33,10 +36,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissDepartmentDal;
 			}
-
 		}
-	
-		private IPermissMenuDal _PermissMenuDal;
+	    private IPermissMenuDal _PermissMenuDal;
 		public IPermissMenuDal PermissMenuDal
 		{
 			get
@@ -47,10 +48,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissMenuDal;
 			}
-
 		}
-	
-		private IPermissRefMenuButtonDal _PermissRefMenuButtonDal;
+	    private IPermissRefMenuButtonDal _PermissRefMenuButtonDal;
 		public IPermissRefMenuButtonDal PermissRefMenuButtonDal
 		{
 			get
@@ -61,10 +60,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissRefMenuButtonDal;
 			}
-
 		}
-	
-		private IPermissRefRoleMenuButtonDal _PermissRefRoleMenuButtonDal;
+	    private IPermissRefRoleMenuButtonDal _PermissRefRoleMenuButtonDal;
 		public IPermissRefRoleMenuButtonDal PermissRefRoleMenuButtonDal
 		{
 			get
@@ -75,10 +72,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissRefRoleMenuButtonDal;
 			}
-
 		}
-	
-		private IPermissRefUserDepartmentDal _PermissRefUserDepartmentDal;
+	    private IPermissRefUserDepartmentDal _PermissRefUserDepartmentDal;
 		public IPermissRefUserDepartmentDal PermissRefUserDepartmentDal
 		{
 			get
@@ -89,10 +84,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissRefUserDepartmentDal;
 			}
-
 		}
-	
-		private IPermissRefUserMenuButtonDal _PermissRefUserMenuButtonDal;
+	    private IPermissRefUserMenuButtonDal _PermissRefUserMenuButtonDal;
 		public IPermissRefUserMenuButtonDal PermissRefUserMenuButtonDal
 		{
 			get
@@ -103,10 +96,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissRefUserMenuButtonDal;
 			}
-
 		}
-	
-		private IPermissRefUserRoleDal _PermissRefUserRoleDal;
+	    private IPermissRefUserRoleDal _PermissRefUserRoleDal;
 		public IPermissRefUserRoleDal PermissRefUserRoleDal
 		{
 			get
@@ -117,10 +108,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissRefUserRoleDal;
 			}
-
 		}
-	
-		private IPermissRoleDal _PermissRoleDal;
+	    private IPermissRoleDal _PermissRoleDal;
 		public IPermissRoleDal PermissRoleDal
 		{
 			get
@@ -131,10 +120,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissRoleDal;
 			}
-
 		}
-	
-		private IPermissUserDetailsDal _PermissUserDetailsDal;
+	    private IPermissUserDetailsDal _PermissUserDetailsDal;
 		public IPermissUserDetailsDal PermissUserDetailsDal
 		{
 			get
@@ -145,10 +132,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissUserDetailsDal;
 			}
-
 		}
-	
-		private IPermissUserLoginDal _PermissUserLoginDal;
+	    private IPermissUserLoginDal _PermissUserLoginDal;
 		public IPermissUserLoginDal PermissUserLoginDal
 		{
 			get
@@ -159,10 +144,8 @@ namespace DotNet.DBProvide
 				}
 				return _PermissUserLoginDal;
 			}
-
 		}
-	
-		private IStateBugDal _StateBugDal;
+	    private IStateBugDal _StateBugDal;
 		public IStateBugDal StateBugDal
 		{
 			get
@@ -173,10 +156,8 @@ namespace DotNet.DBProvide
 				}
 				return _StateBugDal;
 			}
-
 		}
-	
-		private IStateLoginLogDal _StateLoginLogDal;
+	    private IStateLoginLogDal _StateLoginLogDal;
 		public IStateLoginLogDal StateLoginLogDal
 		{
 			get
@@ -187,10 +168,8 @@ namespace DotNet.DBProvide
 				}
 				return _StateLoginLogDal;
 			}
-
 		}
-	
-		private IStateOperateLogDal _StateOperateLogDal;
+	    private IStateOperateLogDal _StateOperateLogDal;
 		public IStateOperateLogDal StateOperateLogDal
 		{
 			get
@@ -201,7 +180,6 @@ namespace DotNet.DBProvide
 				}
 				return _StateOperateLogDal;
 			}
-
 		}
         /// <summary>
         /// 保存ORM执行的操作
@@ -212,5 +190,5 @@ namespace DotNet.DBProvide
 			//让当前的上下文进行提交(一次请求一个上下文)
 			return DbContextFactory.GetCurrentDbContext().SaveChanges();
 		}
-	}
+    }
 }

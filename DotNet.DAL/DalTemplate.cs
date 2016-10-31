@@ -3,6 +3,12 @@
 
 using DotNet.Entity;
 using DotNet.IDAL;
+/**        数据访问类实现-自动生成
+ * 项目名：DotNet      程序集名：DotNet.DAL
+ * 制作人：韩庆瑞      生成时间：10/31/2016 17:22:24
+ * 生成工具：T4模板
+ * 描述：
+**/
 namespace DotNet.DAL
 {
 	public partial interface PermissButtonDal :IBaseDal<PermissButton>,IPermissButtonDal
