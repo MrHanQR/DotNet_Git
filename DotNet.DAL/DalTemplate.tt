@@ -8,6 +8,7 @@
 <#@ include file="EF.Utility.CS.ttinclude"#>
 <#@ output extension=".cs"#>
 using DotNet.Entity;
+using DotNet.DAL.Base;
 using DotNet.IDAL;
 /**        数据访问类实现-自动生成
  * 项目名：DotNet      程序集名：DotNet.DAL
@@ -36,7 +37,7 @@ namespace DotNet.DAL
 	TableNameList.Remove("__MigrationHistory");
     foreach (var item in TableNameList)
     {#>
-	public partial interface <#=item#>Dal :IBaseDal<<#=item #>>,I<#=item#>Dal
+	public partial class <#=item#>Dal :SqlServerBaseDal<<#=item #>>,I<#=item#>Dal
     {
        
     } 	 
