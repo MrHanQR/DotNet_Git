@@ -5,7 +5,7 @@ using DotNet.IDAL;
 using DotNet.DAL.Factory;
 /**        数据库会话类-自动生成
  * 项目名：DotNet      程序集名：DotNet.DBProvide
- * 制作人：韩庆瑞      生成时间：10/31/2016 17:22:28
+ * 制作人：韩庆瑞      生成时间：11/01/2016 15:06:14
  * 生成工具：T4模板
  * 描述：
 **/

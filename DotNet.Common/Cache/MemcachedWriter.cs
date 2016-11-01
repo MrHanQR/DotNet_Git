@@ -46,8 +46,6 @@ namespace DotNet.Common.Cache
         {
             return MemcachedClient.Get(key);
         }
-
-
         public void Update(string key, object value)
         {
             MemcachedClient.Set(key, value);

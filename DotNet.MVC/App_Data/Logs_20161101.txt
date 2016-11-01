@@ -1,0 +1,198 @@
+ ----------------------header--------------------------
+ 2016-11-01 10:20:23,417 [8] ERROR WebLogger - System.InvalidOperationException: 尝试创建“DotNet.MVC.Areas.Admin.Controllers.AdminHomeController”类型的控制器时出错。请确保控制器具有无参数公共构造函数。 ---> Spring.Objects.Factory.ObjectCreationException: Error thrown by a dependency of object 'DotNet.MVC.Areas.Admin.Controllers.AdminHomeController#0' defined in 'file [D:\MyDocument\Code\DotNet_Git\DotNet.MVC\Config\Spring_BLL_Controllers.xml] line 7' : Initialization of object failed : Cannot instantiate Type [DotNet.BLL.PermissMenuBll] using ctor [Void .ctor()] : '未找到类型“DotNet.DAL.PermissMenuDal”上的构造函数。'
+ while resolving 'MenuBll' to 'PermissMenuBll' defined in 'file [D:\MyDocument\Code\DotNet_Git\DotNet.MVC\Config\Spring_BLL_Attribute.xml] line 8' ---> Spring.Util.FatalReflectionException: Cannot instantiate Type [DotNet.BLL.PermissMenuBll] using ctor [Void .ctor()] : '未找到类型“DotNet.DAL.PermissMenuDal”上的构造函数。' ---> System.MissingMethodException: 未找到类型“DotNet.DAL.PermissMenuDal”上的构造函数。
+   在 System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes, StackCrawlMark& stackMark)
+   在 System.Activator.CreateInstance(Type type, BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+   在 System.Reflection.Assembly.CreateInstance(String typeName, Boolean ignoreCase, BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+   在 System.Reflection.Assembly.CreateInstance(String typeName, Boolean ignoreCase)
+   在 DotNet.DBProvide.DalFactory.GetPermissMenuDal() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.DBProvide\DalFactoryTemplate.cs:行号 41
+   在 DotNet.DBProvide.DBSession.get_PermissMenuDal() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.DBProvide\DBSession.cs:行号 47
+   在 DotNet.BLL.PermissMenuBll.SetCurrentDal() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\BllTemplate.cs:行号 32
+   在 DotNet.BLL.BaseBll`1..ctor() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\BaseBll.cs:行号 25
+   在 DotNet.BLL.PermissMenuBll..ctor()
+   在 _dynamic_DotNet.BLL.PermissMenuBll..ctor(Object[] )
+   在 Spring.Reflection.Dynamic.SafeConstructor.Invoke(Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Reflection\Dynamic\DynamicConstructor.cs:行号 113
+   在 Spring.Util.ObjectUtils.InstantiateType(ConstructorInfo constructor, Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Util\ObjectUtils.cs:行号 248
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 Spring.Util.ObjectUtils.InstantiateType(ConstructorInfo constructor, Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Util\ObjectUtils.cs:行号 253
+   在 Spring.Objects.Factory.Support.SimpleInstantiationStrategy.Instantiate(RootObjectDefinition definition, String name, IObjectFactory factory) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\SimpleInstantiationStrategy.cs:行号 95
+   在 Spring.Objects.Factory.Support.WebInstantiationStrategy.Instantiate(RootObjectDefinition definition, String name, IObjectFactory factory) 位置 c:\_prj\spring-net\src\Spring\Spring.Web\Objects\Factory\Support\WebInstantiationStrategy.cs:行号 80
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.InstantiateObject(String objectName, RootObjectDefinition definition) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 1061
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.CreateObjectInstance(String objectName, RootObjectDefinition objectDefinition, Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 1025
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.InstantiateObject(String name, RootObjectDefinition definition, Object[] arguments, Boolean allowEagerCaching, Boolean suppressConfigure) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 922
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 Spring.Objects.Factory.Support.ObjectDefinitionValueResolver.ResolveReference(IObjectDefinition definition, String name, String argumentName, RuntimeObjectReference reference) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\ObjectDefinitionValueResolver.cs:行号 379
+   在 Spring.Objects.Factory.Support.ObjectDefinitionValueResolver.ResolvePropertyValue(String name, IObjectDefinition definition, String argumentName, Object argumentValue) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\ObjectDefinitionValueResolver.cs:行号 164
+   在 Spring.Objects.Factory.Support.ObjectDefinitionValueResolver.ResolveValueIfNecessary(String name, IObjectDefinition definition, String argumentName, Object argumentValue) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\ObjectDefinitionValueResolver.cs:行号 113
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.ApplyPropertyValues(String name, RootObjectDefinition definition, IObjectWrapper wrapper, IPropertyValues properties) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 398
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.PopulateObject(String name, RootObjectDefinition definition, IObjectWrapper wrapper) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 600
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.ConfigureObject(String name, RootObjectDefinition definition, IObjectWrapper wrapper) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 1838
+   在 Spring.Objects.Factory.Support.WebObjectFactory.ConfigureObject(String name, RootObjectDefinition definition, IObjectWrapper wrapper) 位置 c:\_prj\spring-net\src\Spring\Spring.Web\Objects\Factory\Support\WebObjectFactory.cs:行号 478
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.InstantiateObject(String name, RootObjectDefinition definition, Object[] arguments, Boolean allowEagerCaching, Boolean suppressConfigure) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 955
+   在 Spring.Objects.Factory.Support.AbstractObjectFactory.GetObjectInternal(String name, Type requiredType, Object[] arguments, Boolean suppressConfigure) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractObjectFactory.cs:行号 2305
+   在 Spring.Objects.Factory.Support.AbstractObjectFactory.GetObject(String name) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractObjectFactory.cs:行号 1996
+   在 Spring.Context.Support.AbstractApplicationContext.GetObject(String name) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Context\Support\AbstractApplicationContext.cs:行号 1813
+   在 Spring.Web.Mvc.SpringMvcDependencyResolver.GetService(Type serviceType) 位置 c:\_prj\spring-net\src\Spring\Spring.Web.Mvc3\SpringMvcDependencyResolver.cs:行号 118
+   在 System.Web.Mvc.DefaultControllerFactory.DefaultControllerActivator.Create(RequestContext requestContext, Type controllerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Mvc.DefaultControllerFactory.DefaultControllerActivator.Create(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ ----------------------header--------------------------
+ 2016-11-01 10:22:44,462 [7] ERROR WebLogger - System.InvalidOperationException: 尝试创建“DotNet.MVC.Areas.Admin.Controllers.AdminHomeController”类型的控制器时出错。请确保控制器具有无参数公共构造函数。 ---> Spring.Objects.Factory.ObjectCreationException: Error thrown by a dependency of object 'DotNet.MVC.Areas.Admin.Controllers.AdminHomeController#0' defined in 'file [D:\MyDocument\Code\DotNet_Git\DotNet.MVC\Config\Spring_BLL_Controllers.xml] line 7' : Initialization of object failed : Cannot instantiate Type [DotNet.BLL.PermissMenuBll] using ctor [Void .ctor()] : '未找到类型“DotNet.DAL.PermissMenuDal”上的构造函数。'
+ while resolving 'MenuBll' to 'PermissMenuBll' defined in 'file [D:\MyDocument\Code\DotNet_Git\DotNet.MVC\Config\Spring_BLL_Attribute.xml] line 8' ---> Spring.Util.FatalReflectionException: Cannot instantiate Type [DotNet.BLL.PermissMenuBll] using ctor [Void .ctor()] : '未找到类型“DotNet.DAL.PermissMenuDal”上的构造函数。' ---> System.MissingMethodException: 未找到类型“DotNet.DAL.PermissMenuDal”上的构造函数。
+   在 System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes, StackCrawlMark& stackMark)
+   在 System.Activator.CreateInstance(Type type, BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+   在 System.Reflection.Assembly.CreateInstance(String typeName, Boolean ignoreCase, BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+   在 System.Reflection.Assembly.CreateInstance(String typeName, Boolean ignoreCase)
+   在 DotNet.DBProvide.DalFactory.GetPermissMenuDal() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.DBProvide\DalFactoryTemplate.cs:行号 41
+   在 DotNet.DBProvide.DBSession.get_PermissMenuDal() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.DBProvide\DBSession.cs:行号 47
+   在 DotNet.BLL.PermissMenuBll.SetCurrentDal() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\BllTemplate.cs:行号 32
+   在 DotNet.BLL.BaseBll`1..ctor() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\BaseBll.cs:行号 25
+   在 DotNet.BLL.PermissMenuBll..ctor()
+   在 _dynamic_DotNet.BLL.PermissMenuBll..ctor(Object[] )
+   在 Spring.Reflection.Dynamic.SafeConstructor.Invoke(Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Reflection\Dynamic\DynamicConstructor.cs:行号 113
+   在 Spring.Util.ObjectUtils.InstantiateType(ConstructorInfo constructor, Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Util\ObjectUtils.cs:行号 248
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 Spring.Util.ObjectUtils.InstantiateType(ConstructorInfo constructor, Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Util\ObjectUtils.cs:行号 253
+   在 Spring.Objects.Factory.Support.SimpleInstantiationStrategy.Instantiate(RootObjectDefinition definition, String name, IObjectFactory factory) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\SimpleInstantiationStrategy.cs:行号 95
+   在 Spring.Objects.Factory.Support.WebInstantiationStrategy.Instantiate(RootObjectDefinition definition, String name, IObjectFactory factory) 位置 c:\_prj\spring-net\src\Spring\Spring.Web\Objects\Factory\Support\WebInstantiationStrategy.cs:行号 80
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.InstantiateObject(String objectName, RootObjectDefinition definition) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 1061
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.CreateObjectInstance(String objectName, RootObjectDefinition objectDefinition, Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 1025
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.InstantiateObject(String name, RootObjectDefinition definition, Object[] arguments, Boolean allowEagerCaching, Boolean suppressConfigure) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 922
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 Spring.Objects.Factory.Support.ObjectDefinitionValueResolver.ResolveReference(IObjectDefinition definition, String name, String argumentName, RuntimeObjectReference reference) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\ObjectDefinitionValueResolver.cs:行号 379
+   在 Spring.Objects.Factory.Support.ObjectDefinitionValueResolver.ResolvePropertyValue(String name, IObjectDefinition definition, String argumentName, Object argumentValue) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\ObjectDefinitionValueResolver.cs:行号 164
+   在 Spring.Objects.Factory.Support.ObjectDefinitionValueResolver.ResolveValueIfNecessary(String name, IObjectDefinition definition, String argumentName, Object argumentValue) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\ObjectDefinitionValueResolver.cs:行号 113
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.ApplyPropertyValues(String name, RootObjectDefinition definition, IObjectWrapper wrapper, IPropertyValues properties) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 398
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.PopulateObject(String name, RootObjectDefinition definition, IObjectWrapper wrapper) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 600
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.ConfigureObject(String name, RootObjectDefinition definition, IObjectWrapper wrapper) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 1838
+   在 Spring.Objects.Factory.Support.WebObjectFactory.ConfigureObject(String name, RootObjectDefinition definition, IObjectWrapper wrapper) 位置 c:\_prj\spring-net\src\Spring\Spring.Web\Objects\Factory\Support\WebObjectFactory.cs:行号 478
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.InstantiateObject(String name, RootObjectDefinition definition, Object[] arguments, Boolean allowEagerCaching, Boolean suppressConfigure) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 955
+   在 Spring.Objects.Factory.Support.AbstractObjectFactory.GetObjectInternal(String name, Type requiredType, Object[] arguments, Boolean suppressConfigure) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractObjectFactory.cs:行号 2305
+   在 Spring.Objects.Factory.Support.AbstractObjectFactory.GetObject(String name) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractObjectFactory.cs:行号 1996
+   在 Spring.Context.Support.AbstractApplicationContext.GetObject(String name) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Context\Support\AbstractApplicationContext.cs:行号 1813
+   在 Spring.Web.Mvc.SpringMvcDependencyResolver.GetService(Type serviceType) 位置 c:\_prj\spring-net\src\Spring\Spring.Web.Mvc3\SpringMvcDependencyResolver.cs:行号 118
+   在 System.Web.Mvc.DefaultControllerFactory.DefaultControllerActivator.Create(RequestContext requestContext, Type controllerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Mvc.DefaultControllerFactory.DefaultControllerActivator.Create(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ ----------------------footer--------------------------
+  ----------------------header--------------------------
+ 2016-11-01 10:23:16,445 [7] ERROR WebLogger - System.InvalidOperationException: 尝试创建“DotNet.MVC.Areas.Admin.Controllers.AdminHomeController”类型的控制器时出错。请确保控制器具有无参数公共构造函数。 ---> Spring.Objects.Factory.ObjectCreationException: Error thrown by a dependency of object 'DotNet.MVC.Areas.Admin.Controllers.AdminHomeController#0' defined in 'file [D:\MyDocument\Code\DotNet_Git\DotNet.MVC\Config\Spring_BLL_Controllers.xml] line 7' : Initialization of object failed : Cannot instantiate Type [DotNet.BLL.PermissMenuBll] using ctor [Void .ctor()] : '未找到类型“DotNet.DAL.PermissMenuDal”上的构造函数。'
+ while resolving 'MenuBll' to 'PermissMenuBll' defined in 'file [D:\MyDocument\Code\DotNet_Git\DotNet.MVC\Config\Spring_BLL_Attribute.xml] line 8' ---> Spring.Util.FatalReflectionException: Cannot instantiate Type [DotNet.BLL.PermissMenuBll] using ctor [Void .ctor()] : '未找到类型“DotNet.DAL.PermissMenuDal”上的构造函数。' ---> System.MissingMethodException: 未找到类型“DotNet.DAL.PermissMenuDal”上的构造函数。
+   在 System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes, StackCrawlMark& stackMark)
+   在 System.Activator.CreateInstance(Type type, BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+   在 System.Reflection.Assembly.CreateInstance(String typeName, Boolean ignoreCase, BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture, Object[] activationAttributes)
+   在 System.Reflection.Assembly.CreateInstance(String typeName, Boolean ignoreCase)
+   在 DotNet.DBProvide.DalFactory.GetPermissMenuDal() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.DBProvide\DalFactoryTemplate.cs:行号 41
+   在 DotNet.DBProvide.DBSession.get_PermissMenuDal() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.DBProvide\DBSession.cs:行号 47
+   在 DotNet.BLL.PermissMenuBll.SetCurrentDal() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\BllTemplate.cs:行号 32
+   在 DotNet.BLL.BaseBll`1..ctor() 位置 D:\MyDocument\Code\DotNet_Git\DotNet.BLL\BaseBll.cs:行号 25
+   在 DotNet.BLL.PermissMenuBll..ctor()
+   在 _dynamic_DotNet.BLL.PermissMenuBll..ctor(Object[] )
+   在 Spring.Reflection.Dynamic.SafeConstructor.Invoke(Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Reflection\Dynamic\DynamicConstructor.cs:行号 113
+   在 Spring.Util.ObjectUtils.InstantiateType(ConstructorInfo constructor, Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Util\ObjectUtils.cs:行号 248
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 Spring.Util.ObjectUtils.InstantiateType(ConstructorInfo constructor, Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Util\ObjectUtils.cs:行号 253
+   在 Spring.Objects.Factory.Support.SimpleInstantiationStrategy.Instantiate(RootObjectDefinition definition, String name, IObjectFactory factory) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\SimpleInstantiationStrategy.cs:行号 95
+   在 Spring.Objects.Factory.Support.WebInstantiationStrategy.Instantiate(RootObjectDefinition definition, String name, IObjectFactory factory) 位置 c:\_prj\spring-net\src\Spring\Spring.Web\Objects\Factory\Support\WebInstantiationStrategy.cs:行号 80
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.InstantiateObject(String objectName, RootObjectDefinition definition) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 1061
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.CreateObjectInstance(String objectName, RootObjectDefinition objectDefinition, Object[] arguments) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 1025
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.InstantiateObject(String name, RootObjectDefinition definition, Object[] arguments, Boolean allowEagerCaching, Boolean suppressConfigure) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 922
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 Spring.Objects.Factory.Support.ObjectDefinitionValueResolver.ResolveReference(IObjectDefinition definition, String name, String argumentName, RuntimeObjectReference reference) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\ObjectDefinitionValueResolver.cs:行号 379
+   在 Spring.Objects.Factory.Support.ObjectDefinitionValueResolver.ResolvePropertyValue(String name, IObjectDefinition definition, String argumentName, Object argumentValue) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\ObjectDefinitionValueResolver.cs:行号 164
+   在 Spring.Objects.Factory.Support.ObjectDefinitionValueResolver.ResolveValueIfNecessary(String name, IObjectDefinition definition, String argumentName, Object argumentValue) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\ObjectDefinitionValueResolver.cs:行号 113
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.ApplyPropertyValues(String name, RootObjectDefinition definition, IObjectWrapper wrapper, IPropertyValues properties) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 398
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.PopulateObject(String name, RootObjectDefinition definition, IObjectWrapper wrapper) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 600
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.ConfigureObject(String name, RootObjectDefinition definition, IObjectWrapper wrapper) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 1838
+   在 Spring.Objects.Factory.Support.WebObjectFactory.ConfigureObject(String name, RootObjectDefinition definition, IObjectWrapper wrapper) 位置 c:\_prj\spring-net\src\Spring\Spring.Web\Objects\Factory\Support\WebObjectFactory.cs:行号 478
+   在 Spring.Objects.Factory.Support.AbstractAutowireCapableObjectFactory.InstantiateObject(String name, RootObjectDefinition definition, Object[] arguments, Boolean allowEagerCaching, Boolean suppressConfigure) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractAutowireCapableObjectFactory.cs:行号 955
+   在 Spring.Objects.Factory.Support.AbstractObjectFactory.GetObjectInternal(String name, Type requiredType, Object[] arguments, Boolean suppressConfigure) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractObjectFactory.cs:行号 2305
+   在 Spring.Objects.Factory.Support.AbstractObjectFactory.GetObject(String name) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Objects\Factory\Support\AbstractObjectFactory.cs:行号 1996
+   在 Spring.Context.Support.AbstractApplicationContext.GetObject(String name) 位置 c:\_prj\spring-net\src\Spring\Spring.Core\Context\Support\AbstractApplicationContext.cs:行号 1813
+   在 Spring.Web.Mvc.SpringMvcDependencyResolver.GetService(Type serviceType) 位置 c:\_prj\spring-net\src\Spring\Spring.Web.Mvc3\SpringMvcDependencyResolver.cs:行号 118
+   在 System.Web.Mvc.DefaultControllerFactory.DefaultControllerActivator.Create(RequestContext requestContext, Type controllerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Mvc.DefaultControllerFactory.DefaultControllerActivator.Create(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ ----------------------footer--------------------------
+  ----------------------header--------------------------
+ 2016-11-01 10:28:05,850 [9] ERROR WebLogger - System.Web.HttpException (0x80004005): 无法在发送 HTTP 标头之后进行重定向。
+   在 System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   在 System.Web.HttpResponseWrapper.Redirect(String url, Boolean endResponse)
+   在 System.Web.Mvc.RedirectToRouteResult.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-11-01 10:29:30,736 [9] ERROR WebLogger - System.Web.HttpException (0x80004005): 未找到路径“/AdminLoginLog/Index”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-11-01 10:29:31,726 [9] ERROR WebLogger - System.Web.HttpException (0x80004005): 未找到路径“/AdminOperatorLog/Index”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-11-01 10:29:33,207 [9] ERROR WebLogger - System.Web.HttpException (0x80004005): 未找到路径“/AdminBug/Index”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

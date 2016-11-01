@@ -1,22 +1,40 @@
 ﻿using System;
 using DotNet.Common.Cache;
-using Spring.Context;
-using Spring.Context.Support;
-using Spring.Objects.Factory;
+using DotNet.Entity.Enum;
 
 namespace DotNet.Common
 {
     public class CacheHelper
     {
-        public static ICacheWriter CacheWriter { get; set; }
-        static CacheHelper()
+        private static ICacheWriter _cacheWriter = null;
+        private static readonly object lockObj = new object();
+        public static ICacheWriter CacheWriter
         {
-            //静态属性static的话，如果想让他有注入的值必须先创建一个实例，才能注入成功
-            //静态方法调用的时候，不需要spring容器创建实例，所以属性无法注入进去，
-            //所以在静态构造函数中用spring创建一个类的实例对象，顺便给当前静态的属性做了注入
-            IApplicationContext ctx = ContextRegistry.GetContext();
-            var obj = ((IObjectFactory)ctx).GetObject("CacheHelper") as ICacheWriter;
-            
+            get
+            {
+                if (_cacheWriter == null)
+                {
+                    lock (lockObj)
+                    {
+                        switch (ConfigHelper.CacheType)
+                        {
+                            case CacheTypeEnum.HttpRuntime:
+                                _cacheWriter = new HttpRuntimeCachedWriter();
+                                break;
+                            case CacheTypeEnum.Memcached:
+                                _cacheWriter = new MemcachedWriter();
+                                break;
+                            case CacheTypeEnum.Redis:
+                                _cacheWriter = new RedisWriter();
+                                break;
+                            default:
+                                _cacheWriter = new HttpRuntimeCachedWriter();
+                                break;
+                        }
+                    }
+                }
+                return _cacheWriter;
+            }
         }
 
         public static void Add(string key, object value, DateTime exp)
@@ -41,6 +59,6 @@ namespace DotNet.Common
         public static void Remove(string key)
         {
             CacheWriter.Remove(key);
-        } 
+        }
     }
 }

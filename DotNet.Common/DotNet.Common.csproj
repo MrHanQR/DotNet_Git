@@ -11,6 +11,7 @@
     <AssemblyName>DotNet.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging">
-      <HintPath>..\packages\Spring.net\Common.Logging.dll</HintPath>
-    </Reference>
     <Reference Include="Commons">
       <HintPath>..\packages\Memcache\Commons.dll</HintPath>
     </Reference>
@@ -40,7 +39,7 @@
       <HintPath>..\packages\NPOI2.2.0\dotnet4\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\packages\Memcache\log4net.dll</HintPath>
+      <HintPath>..\packages\Log4net\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Memcached.ClientLibrary">
       <HintPath>..\packages\Memcache\Memcached.ClientLibrary.dll</HintPath>
@@ -48,9 +47,27 @@
     <Reference Include="NPOI">
       <HintPath>..\packages\NPOI2.2.0\dotnet4\NPOI.dll</HintPath>
     </Reference>
-    <Reference Include="Spring.Core, Version=2.0.0.40000, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\packages\NPOI2.2.0\dotnet4\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\packages\NPOI2.2.0\dotnet4\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\packages\NPOI2.2.0\dotnet4\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\packages\ServiceStack.Redis-3\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Spring.Core.2.0.1\lib\net45\Spring.Core.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.Redis-3\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\packages\ServiceStack.Redis-3\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Redis-3\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -75,6 +92,14 @@
     <Compile Include="Cache\ICacheWriter.cs" />
     <Compile Include="Cache\MemcachedWriter.cs" />
     <Compile Include="Cache\RedisWriter.cs" />
+    <Compile Include="Cache\Redis\DoRedisHash.cs" />
+    <Compile Include="Cache\Redis\DoRedisList.cs" />
+    <Compile Include="Cache\Redis\DoRedisSet.cs" />
+    <Compile Include="Cache\Redis\DoRedisString.cs" />
+    <Compile Include="Cache\Redis\DoRedisZSet.cs" />
+    <Compile Include="Cache\Redis\RedisBase.cs" />
+    <Compile Include="Cache\Redis\RedisConfig.cs" />
+    <Compile Include="Cache\Redis\RedisManager.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="CookieHelper.cs" />
     <Compile Include="DESEncryptHelper.cs" />
