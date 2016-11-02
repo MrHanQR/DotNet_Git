@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>6</LangVersion>
+    <LangVersion>5</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -85,6 +85,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNet.Common\DotNet.Common.csproj">
+      <Project>{EC9C0F52-C3F6-4AD7-A75B-944C7391E020}</Project>
+      <Name>DotNet.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotNet.DAL\DotNet.DAL.csproj">
       <Project>{478ba50e-4307-4f8b-9e5e-06e94a62b441}</Project>
       <Name>DotNet.DAL</Name>
