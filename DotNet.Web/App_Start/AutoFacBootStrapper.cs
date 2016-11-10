@@ -38,7 +38,8 @@ namespace DotNet.Web
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             //builder.Register(c => new VisitorRepository()).As<IVisitorRepository>().InstancePerHttpRequest();
-            builder.RegisterType<PermissUserLoginBll>().As<IPermissUserLoginBll>().InstancePerRequest(); ;
+            builder.RegisterType<PermissUserLoginBll>().As<IPermissUserLoginBll>().InstancePerRequest(); 
+            builder.RegisterType<PermissMenuBll>().As<IPermissMenuBll>().InstancePerRequest(); 
             builder.RegisterFilterProvider();
 
             var container = builder.Build();

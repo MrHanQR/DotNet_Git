@@ -6,7 +6,7 @@
         {
             get
             {
-                return "http://localhost:17878/";
+                return "http://localhost:17878";
             }
         }
     }

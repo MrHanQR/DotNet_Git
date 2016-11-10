@@ -11,8 +11,7 @@ namespace DotNet.Web.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
-        //public IPermissUserLoginBll UserLoginBll { get; set; }
-        private IPermissUserLoginBll _userLoginBll;
+        private readonly IPermissUserLoginBll _userLoginBll;
         public LoginController(IPermissUserLoginBll userLoginBll)
         {
             _userLoginBll = userLoginBll;
@@ -68,10 +67,10 @@ namespace DotNet.Web.Areas.Admin.Controllers
             {
                 //第二步：校验用户名密码
                 //        密码要加密
-                string md5Pwd = DESEncryptHelper.GetStringMD5(loginPwd);
+                string md5Pwd = DESEncryptHelper.GetStringMD5(loginId + loginPwd);
                 var user = _userLoginBll.ORMLoadEntities(u => (u.LoginId == loginId || u.UserEmail == loginId)
-                                                       && u.LoginPwd == md5Pwd
-                                                       && u.IsAble == true).FirstOrDefault();
+                                                            && u.LoginPwd == md5Pwd
+                                                            && u.IsAble ).FirstOrDefault();
                 if (user == null)
                 {
                     return Content("用户名密码错误！");
@@ -82,9 +81,11 @@ namespace DotNet.Web.Areas.Admin.Controllers
                     //用户memcached模拟Session
                     Guid guid = Guid.NewGuid();
                     //以guid为key，以登录用户为value放到mm里面去。
-                    Common.CacheHelper.Add(guid.ToString(), user, DateTime.Now.AddMinutes(20));
+                    CacheHelper.Add(guid.ToString(), user, DateTime.Now.AddMinutes(20));
                     //把guid写到cookie里面去
-                    Response.Cookies["mysessionId"].Value = guid.ToString();
+                    var httpCookie = Response.Cookies["mysessionId"];
+                    if (httpCookie != null)
+                        httpCookie.Value = guid.ToString();
 
                     //第四步，记住我功能。
                     if (!string.IsNullOrEmpty(loginkeeping))
@@ -119,14 +120,16 @@ namespace DotNet.Web.Areas.Admin.Controllers
             }
             else
             {
-                PermissUserLogin modelUser = new PermissUserLogin();
-                modelUser.LoginId = useridsignup;
-                modelUser.UserName = usernamesignup;
-                modelUser.LoginPwd = DESEncryptHelper.GetStringMD5(passwordsignup);
-                modelUser.UserEmail = emailsignup;
-                modelUser.IsAble = false;
-                modelUser.AddDate = null;
-                modelUser.PhotoPath = "default.png";
+                PermissUserLogin modelUser = new PermissUserLogin
+                {
+                    LoginId = useridsignup,
+                    UserName = usernamesignup,
+                    LoginPwd = passwordsignup,
+                    UserEmail = emailsignup,
+                    IsAble = false,
+                    AddDate = null,
+                    PhotoPath = "default.png"
+                };
                 int r = _userLoginBll.ORMAdd(modelUser);
                 if (r > 0)
                 {
@@ -145,7 +148,7 @@ namespace DotNet.Web.Areas.Admin.Controllers
         /// <returns></returns>
         public ActionResult ShowVCode()
         {
-            Common.ValidateCodeHelper codeHelper = new ValidateCodeHelper();
+            ValidateCodeHelper codeHelper = new ValidateCodeHelper();
             int vCodeLength = ConfigHelper.CaptchaLength;
             string strCode = codeHelper.CreateValidateCode(vCodeLength);
             Session["LoginCode"] = strCode;

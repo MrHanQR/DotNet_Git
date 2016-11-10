@@ -6,12 +6,21 @@ using DotNet.Entity.Enum;
 using DotNet.IBLL;
 using DotNet.IDAL;
 using System.Web;
+using DotNet.Entity;
 
 namespace DotNet.BLL
 {
     public partial class PermissUserLoginBll:IPermissUserLoginBll
     {
         public IPermissUserDetailsDal UserDetailsDal { get; set; }
+
+        public override int ORMAdd(PermissUserLogin entity)
+        {
+            //密码加盐加密
+            entity.LoginPwd = DESEncryptHelper.GetStringMD5(entity.LoginId+ entity.LoginPwd);
+            return base.ORMAdd(entity);
+        }
+
         /// <summary>
         /// 逻辑删除一条记录
         /// DeleteFlag标记为Delted
