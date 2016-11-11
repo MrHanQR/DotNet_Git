@@ -41,7 +41,6 @@ namespace DotNet.Web
             builder.RegisterType<PermissUserLoginBll>().As<IPermissUserLoginBll>().InstancePerRequest(); 
             builder.RegisterType<PermissMenuBll>().As<IPermissMenuBll>().InstancePerRequest(); 
             builder.RegisterFilterProvider();
-
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

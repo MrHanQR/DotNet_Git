@@ -153,6 +153,11 @@
     <Content Include="Images\User\user2-160x160.jpg" />
     <Content Include="Images\User\user3-128x128.jpg" />
     <Content Include="Images\User\user4-128x128.jpg" />
+    <Content Include="Scripts\AdminLTEDist\app.js" />
+    <Content Include="Scripts\AdminLTEDist\app.min.js" />
+    <Content Include="Scripts\AdminLTEDist\demo.js" />
+    <Content Include="Scripts\AdminLTEDist\pages\dashboard.js" />
+    <Content Include="Scripts\AdminLTEDist\pages\dashboard2.js" />
     <Content Include="Scripts\plugins\ckeditor\CHANGES.md" />
     <Content Include="Scripts\plugins\ckeditor\LICENSE.md" />
     <Content Include="Scripts\plugins\ckeditor\plugins\scayt\LICENSE.md" />
