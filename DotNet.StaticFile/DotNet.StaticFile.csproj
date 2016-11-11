@@ -148,6 +148,11 @@
     <Content Include="CSS\build\less\timeline.less" />
     <Content Include="CSS\build\less\users-list.less" />
     <Content Include="CSS\build\less\variables.less" />
+    <Content Include="Images\User\165C9DCC948C38B305578011F06852FC_small.jpg" />
+    <Content Include="Images\User\user1-128x128.jpg" />
+    <Content Include="Images\User\user2-160x160.jpg" />
+    <Content Include="Images\User\user3-128x128.jpg" />
+    <Content Include="Images\User\user4-128x128.jpg" />
     <Content Include="Scripts\plugins\ckeditor\CHANGES.md" />
     <Content Include="Scripts\plugins\ckeditor\LICENSE.md" />
     <Content Include="Scripts\plugins\ckeditor\plugins\scayt\LICENSE.md" />
@@ -186,6 +191,8 @@
     <Content Include="Fonts\franchise-bold-webfont.ttf" />
     <Content Include="Fonts\franchise-bold-webfont.woff" />
     <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Fonts\fontawesome-webfont.woff" />
+    <Content Include="Fonts\fontawesome-webfont.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

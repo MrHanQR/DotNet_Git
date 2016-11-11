@@ -38,7 +38,7 @@ namespace DotNet.Web.Areas.Admin.Controllers
             var mySession = ControllerContext.HttpContext.Request.Cookies["mysessionId"];
             if (mySession == null)
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Login", new { Area = "Admin" });
             }
             else
             {
@@ -46,9 +46,15 @@ namespace DotNet.Web.Areas.Admin.Controllers
                 var userSession = CacheHelper.Get(mySessionId) as PermissUserLogin;
                 if (userSession == null)//执行记住我之后，直接登陆到HomeIndex，Session中却没有User实体
                 {
-                    string loginId = ControllerContext.HttpContext.Request.Cookies["N"].Value;
-                    string loginPwd = ControllerContext.HttpContext.Request.Cookies["W"].Value;
-                    userSession = _userLoginBll.ORMLoadEntities(u => u.LoginId == loginId && u.LoginPwd == loginPwd).FirstOrDefault();
+                    //检查是不是已经“记住我”
+                    string loginName = Request.Cookies["N"] == null ? string.Empty : Request.Cookies["N"].Value;
+                    string loginPwd = Request.Cookies["W"] == null ? string.Empty : Request.Cookies["W"].Value;
+                    if (string.IsNullOrEmpty(loginName) || string.IsNullOrEmpty(loginPwd))//cookie里没有
+                    {
+                        return RedirectToAction("Index","Login",new {Area="Admin"});
+                    }
+                    //已经记住我 则自己登录
+                    userSession = _userLoginBll.ORMLoadEntities(u => u.LoginId == loginName && u.LoginPwd == loginPwd).FirstOrDefault();
                     CacheHelper.Add("mysessionId", userSession);
                 }
                 ViewData["userSession"] = userSession;

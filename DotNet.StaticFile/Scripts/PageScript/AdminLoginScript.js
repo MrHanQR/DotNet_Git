@@ -39,7 +39,7 @@ function ChangeCheckCode() {
 //提交之后，执行的代码
 function AfterSubmit(data) {
     if (data == "ok") {
-        window.location.href = "/Home/Index";
+        window.location.href = "/Admin/Home/Index";
     } else {
         ChangeCheckCode();
         $("#loginBtn").removeAttr("disabled");//启用
