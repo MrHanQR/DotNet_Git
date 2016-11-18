@@ -43,7 +43,7 @@ namespace DotNet.Web.Areas.Admin.Attributes
                         return false;
                     }
                     //已经记住我 则自己登录
-                    userSession = _userLoginBll.ORMLoadEntities(u => u.LoginId == loginName && u.LoginPwd == loginPwd).FirstOrDefault();
+                    userSession = _userLoginBll.LoadEntities(u => u.LoginId == loginName && u.LoginPwd == loginPwd).FirstOrDefault();
                     CacheHelper.Add("mysessionId", userSession);
                 }
                 return true;

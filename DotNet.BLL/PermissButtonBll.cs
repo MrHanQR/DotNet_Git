@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using DotNet.Entity;
 
@@ -20,12 +21,9 @@ namespace DotNet.BLL
         {
             if (!DeleteAny(id))
             {
-                return DbSession.SaveChanges() > 0;
+                return DbContext.SaveChanges() > 0;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
         /// <summary>
         /// 删除数据库中该按钮所有的相关信息
@@ -42,7 +40,7 @@ namespace DotNet.BLL
                     return false;
                 }
             }
-            return DbSession.SaveChanges() > 0;
+            return DbContext.SaveChanges() > 0;
         }
 
         private bool DeleteAny(string strId)
@@ -51,23 +49,23 @@ namespace DotNet.BLL
             if (Guid.TryParse(strId, out id))
             {
                 //删除Button
-                CurrentDal.ORMDeleteById(id);
+                Delete(id);
                 //删除RoleMenuButton
-                DbSession.PermissRefRoleMenuButtonDal.ORMDeleteList(w => w.ButtonId == id);
+                var roleMenuButtonContext = DbContext.Set<PermissRefRoleMenuButton>();
+                roleMenuButtonContext.RemoveRange(roleMenuButtonContext.Where(w => w.ButtonId == id));
                 //删除UserMenuButton
-                var menuButtonModels = DbSession.PermissRefMenuButtonDal.ORMLoadEntities(w => w.ButtonId == id);
-                foreach (var permissRefMenuButton in menuButtonModels)
+                var menuButtonContext = DbContext.Set<PermissRefMenuButton>();
+                var userMenuButtonContext = DbContext.Set<PermissRefUserMenuButton>();
+                IQueryable<PermissRefMenuButton> menuButtonCollection = menuButtonContext.Where(w => w.ButtonId == id);
+                foreach (PermissRefMenuButton item in menuButtonCollection)
                 {
-                    DbSession.PermissRefUserMenuButtonDal.ORMDeleteList(w => w.MenuButtonId == permissRefMenuButton.Id);
+                    userMenuButtonContext.RemoveRange(userMenuButtonContext.Where(w => w.MenuButtonId == item.Id));
                 }
                 //删除MenuButton
-                DbSession.PermissRefMenuButtonDal.ORMDeleteList(w => w.ButtonId == id);
+                menuButtonContext.RemoveRange(menuButtonCollection);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

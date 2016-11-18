@@ -24,13 +24,13 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             object o = CacheHelper.Get("UserList");
             if (o == null)
             {
-                o = UserLoginBll.ORMLoadEntities(u => u.DeleteFlag == DelFlagEnum.Normal).ToList();
+                o = UserLoginBll.LoadEntities(u => u.DeleteFlag == DelFlagEnum.Normal).ToList();
                 CacheHelper.Add("UserList", o);
             }
             object o2 = CacheHelper.Get("DepartmentList");
             if (o2 == null)
             {
-                List<PermissDepartment> allDepartments = DepartmentBll.ORMLoadEntities(d => true).OrderBy(d => d.Sort).ToList();
+                List<PermissDepartment> allDepartments = DepartmentBll.LoadEntities(d => true).OrderBy(d => d.Sort).ToList();
                 o2 = DepartmentBll.CreateDepartmentTree(allDepartments, null);
                 CacheHelper.Add("DepartmentList", o2, DateTime.Now.AddMinutes(20));
             }
@@ -44,7 +44,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             object o = CacheHelper.Get("OldUserList");
             if (o == null)
             {
-                o = UserLoginBll.ORMLoadEntities(u => u.DeleteFlag == DelFlagEnum.Deleted).ToList();
+                o = UserLoginBll.LoadEntities(u => u.DeleteFlag == DelFlagEnum.Deleted).ToList();
                 CacheHelper.Add("OldUserList", o);
             }
             return View(o as List<PermissUserLogin>);
@@ -57,7 +57,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             if (o == null)
             {
                 List<PermissUserLogin> userList =
-               UserLoginBll.ORMLoadEntities(u => u.IsAble == false
+               UserLoginBll.LoadEntities(u => u.IsAble == false
                                               && u.AddDate == null).ToList();
                 List<AuditUserViewModel> auditUserList = new List<AuditUserViewModel>();
                 foreach (PermissUserLogin user in userList)
@@ -95,7 +95,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                 }
                 else//正常填写
                 {
-                    PermissUserLogin user = UserLoginBll.ORMLoadEntities(u => u.LoginId == loginId || u.UserEmail == userEmail).FirstOrDefault();
+                    PermissUserLogin user = UserLoginBll.LoadEntities(u => u.LoginId == loginId || u.UserEmail == userEmail).FirstOrDefault();
                     if (user != null)//用户名 邮箱 占用
                     {
                         errorMsg = "用户名或邮箱已被注册";
@@ -116,7 +116,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                         model.PhotoPath = FileOperatorHelper.SaveImages(file, out errorMsg, 140, 140);//"165C9DCC948C38B305578011F06852FC"
                         //如果file文件有问题，out返回ErrMsg，否则为String.Empty
                         //返回md5FileName;
-                        if (UserLoginBll.ORMAdd(model) > 0)
+                        if (UserLoginBll.Add(model) > 0)
                         {
                             CacheHelper.Remove("UserList");
                             return RedirectToAction("Index", "AdminUser");
@@ -153,9 +153,9 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                 else
                 {
                     //查到该用户
-                    PermissUserLogin user = UserLoginBll.ORMLoadEntities(u => u.Id == new Guid(id)).FirstOrDefault();
+                    PermissUserLogin user = UserLoginBll.LoadEntities(u => u.Id == new Guid(id)).FirstOrDefault();
                     //验证修改后的邮箱会不会重复
-                    PermissUserLogin validUser = UserLoginBll.ORMLoadEntities(u => u.UserEmail == userEmail).FirstOrDefault();
+                    PermissUserLogin validUser = UserLoginBll.LoadEntities(u => u.UserEmail == userEmail).FirstOrDefault();
                     if (validUser != null && validUser.Id != new Guid(id))//存在一条记录是这个邮箱，且不是修改的这条
                     {
                         errorMsg = "邮箱已被占用";
@@ -172,7 +172,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                         {
                             user.PhotoPath = FileOperatorHelper.SaveImages(file, out errorMsg, 140, 140);
                         }
-                        if (UserLoginBll.ORMUpdate(user))
+                        if (UserLoginBll.Update(user))
                         {
                             CacheHelper.Remove("UserList");
                             return RedirectToAction("Index");
@@ -232,7 +232,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             }
             else
             {
-                var model = UserLoginBll.ORMLoadEntities(u => u.Id == new Guid(id)).FirstOrDefault();
+                var model = UserLoginBll.LoadEntities(u => u.Id == new Guid(id)).FirstOrDefault();
                 if (model != null)
                 {
                     if (disable == "1")
@@ -243,7 +243,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                     {
                         model.IsAble = true;
                     }
-                    if (UserLoginBll.ORMUpdate(model))
+                    if (UserLoginBll.Update(model))
                     {
                         CacheHelper.Remove("UserList");
                         return Content("1");
@@ -270,12 +270,12 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             }
             else
             {
-                var model = UserLoginBll.ORMLoadEntities(u => u.Id == new Guid(id)).FirstOrDefault();
+                var model = UserLoginBll.LoadEntities(u => u.Id == new Guid(id)).FirstOrDefault();
                 if (model != null)
                 {
                     model.AddDate = DateTime.Now;
                     model.DeleteFlag = DelFlagEnum.Normal;
-                    if (UserLoginBll.ORMUpdate(model))
+                    if (UserLoginBll.Update(model))
                     {
                         CacheHelper.Remove("OldUserList");
                         CacheHelper.Remove("UserList");
@@ -303,7 +303,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             }
             else
             {
-                var model = UserLoginBll.ORMLoadEntities(u => u.Id == new Guid(id)).FirstOrDefault();
+                var model = UserLoginBll.LoadEntities(u => u.Id == new Guid(id)).FirstOrDefault();
                 if (model != null)
                 {
                     if (UserLoginBll.ORMPhysicallyDelete(id))
@@ -364,7 +364,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             else
             {
                 Guid guidId = new Guid(id);
-                var loginModel = UserLoginBll.ORMLoadEntities(u => u.Id == guidId).FirstOrDefault();
+                var loginModel = UserLoginBll.LoadEntities(u => u.Id == guidId).FirstOrDefault();
                 if (loginModel == null)//Login表里根本没这条记录
                 {
                     return Content("0");
@@ -385,7 +385,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                     model.ShortDescription = string.IsNullOrEmpty(loginModel.ShortDescription)
                         ? "这家伙很懒，什么都没有说"
                         : loginModel.ShortDescription;
-                    var detailModel = UserDetailsBll.ORMLoadEntities(u => u.UserId == guidId).FirstOrDefault();
+                    var detailModel = UserDetailsBll.LoadEntities(u => u.UserId == guidId).FirstOrDefault();
                     if (detailModel == null)
                     {
                         model.RealName = "未知";
@@ -426,7 +426,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             if (Guid.TryParse(hideDepId, out depId))
             {
                 //是否存在这个部门
-                var depModel=DepartmentBll.ORMLoadEntities(d => d.Id == depId).FirstOrDefault();
+                var depModel=DepartmentBll.LoadEntities(d => d.Id == depId).FirstOrDefault();
                 if (depModel!=null)
                 {
                     //拿到用户Id

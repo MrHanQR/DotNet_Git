@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using DotNet.Entity;
 
@@ -19,7 +20,7 @@ namespace DotNet.BLL
         {
              Guid gMenuId=new Guid(menuId);
             //删除该Menu原来的Button
-           CurrentDal.ORMDeleteList(m=>m.MenuId==gMenuId);
+             DbContext.Set<PermissRefMenuButton>().RemoveRange(DbContext.Set<PermissRefMenuButton>().Where(m => m.MenuId == gMenuId));
             //添加新的MenuButton
             for (int i = 0; i < idList.Length; i++)
             {
@@ -27,9 +28,9 @@ namespace DotNet.BLL
                 Guid buttonId = new Guid(idList[i]);
                 model.ButtonId = buttonId;
                 model.MenuId = gMenuId;
-                CurrentDal.ORMAdd(model);
+                 DbContext.Set<PermissRefMenuButton>().Add(model);
             }
-            return DbSession.SaveChanges() > 0;
+            return DbContext.SaveChanges() > 0;
         }
     }
 }

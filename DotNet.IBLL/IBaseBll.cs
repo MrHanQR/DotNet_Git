@@ -145,68 +145,73 @@ namespace DotNet.IBLL
         /// </summary>
         /// <param name="entity">实体模型</param>
         /// <returns>主键</returns>
-        int ORMAdd(T entity);
+        int Add(T entity);
         /// <summary>
         /// 添加多条记录
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        int ORMAdd(IList<T> entities);
+        int Add(IList<T> entities);
         /// <summary>
         /// 更新一条记录
         /// </summary>
         /// <param name="entity">要更新的实体</param>
         /// <returns>是否成功</returns>
-        bool ORMUpdate(T entity);
+        bool Update(T entity);
         /// <summary>
         /// 删除一条记录
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns>是否成功</returns>
-        bool ORMDelete(T entity);
+        bool Delete(T entity);
         /// <summary>
         /// 通过主键删除一条记录
         /// </summary>
         /// <param name="primaryKeyValue">主键值</param>
         /// <returns>是否成功</returns>
-        bool ORMDelete(object primaryKeyValue);
+        bool Delete(object primaryKeyValue);
         /// <summary>
         /// 删除多条记录
         /// </summary>
         /// <param name="entities">要删除对象实体的List集合</param>
         /// <returns>是否成功</returns>
-        bool ORMDeleteList(IList<T> entities);
+        bool DeleteList(IList<T> entities);
         /// <summary>
         /// 删除多条记录
         /// </summary>
         /// <param name="idList">要删除对象实体的id的集合</param>
         /// <returns>是否成功</returns>
-        bool ORMDeleteList(string[] idList);
+        bool DeleteList(string[] idList);
         /// <summary>
         /// 删除多条记录
         /// </summary>
         /// <param name="whereLambda">查询记录的条件</param>
         /// <returns></returns>
-        int ORMDeleteList(Expression<Func<T, bool>> whereLambda);
+        int DeleteList(Expression<Func<T, bool>> whereLambda);
         /// <summary>
         /// 是否存在该记录
         /// </summary>
         /// <param name="entity">对象实体</param>
         /// <returns>若存在返回True</returns>
-        bool ORMExists(T entity);
+        bool Exists(T entity);
         /// <summary>
         /// 返回一个对象实体
         /// </summary>
         /// <param name="primarykeyValue">主键</param>
         /// <returns>对象实体</returns>
-        T ORMGetModel(object primarykeyValue);
-       
+        T GetModel(object primarykeyValue);
+        /// <summary>
+        /// 查询记录数
+        /// </summary>
+        /// <param name="whereLambda">lambda表达式，查询条件</param>
+        /// <returns></returns>
+        int GetRecordTotalCount(Expression<Func<T, bool>> whereLambda);
         /// <summary>
         /// 查询实体集合
         /// </summary>
         /// <param name="whereLambda">lambda查询表达式</param>
         /// <returns>IQueryable对象集合</returns>
-        IQueryable<T> ORMLoadEntities(Expression<Func<T, bool>> whereLambda);
+        IQueryable<T> LoadEntities(Expression<Func<T, bool>> whereLambda);
         /// <summary>
         /// 分页查询实体集合
         /// </summary>
@@ -218,7 +223,7 @@ namespace DotNet.IBLL
         /// <param name="isAsc">是否正序</param>
         /// <param name="orderBy">排序依据的字段</param>
         /// <returns>IQueryable集合</returns>
-        IQueryable<T> ORMLoadPagedEntities<S>(int pageIndex, int pageSize,
+        IQueryable<T> LoadPagedEntities<S>(int pageIndex, int pageSize,
             out int totalCount,
            Expression<Func<T, bool>> whereLambda, bool isAsc, Expression<Func<T, S>> orderBy);
 

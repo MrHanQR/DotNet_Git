@@ -19,7 +19,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             object o=CacheHelper.Get("ButtonList");
             if (o==null)
             {
-                List<PermissButton> allButtons = ButtonBll.ORMLoadEntities(u => true).OrderBy(u => u.Sort).ToList();
+                List<PermissButton> allButtons = ButtonBll.LoadEntities(u => true).OrderBy(u => u.Sort).ToList();
                 o = allButtons;
                 CacheHelper.Add("ButtonList",o,DateTime.Now.AddMinutes(20));
             }
@@ -41,7 +41,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             model.AddDate = DateTime.Now;
             model.Description = collection["ButtonDesc"];
             
-            if (ButtonBll.ORMAdd(model) > 0)
+            if (ButtonBll.Add(model) > 0)
             {
                 CacheHelper.Remove("ButtonList");
                 return RedirectToAction("Index");
@@ -63,7 +63,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             model.ActionNameCode = collection["EditButtonActionName"];
             model.AddDate = DateTime.Now;
             model.Description = collection["EditButtonDesc"];
-            if (ButtonBll.ORMUpdate(model))
+            if (ButtonBll.Update(model))
             {
                 CacheHelper.Remove("ButtonList");
                 return RedirectToAction("Index");

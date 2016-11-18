@@ -2,7 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Text;
-using DotNet.DAL.Factory;
+using DotNet.Common.SqlHelper;
 using DotNet.Entity.Enum;
 
 namespace DotNet.DAL.Base
@@ -18,7 +18,7 @@ namespace DotNet.DAL.Base
         /// <param name="strWhere">where条件</param>
         /// <param name="orderBy">《列名,ASC/DESC》</param>
         /// <returns>DataTable</returns>
-        public override DataTable AdoGetTablePaged(int pageIndex, int pageSize, out int totalCount, string strWhere, Dictionary<string,SqlSortEnum> orderBy )
+        public override DataTable GetTablePaged(int pageIndex, int pageSize, out int totalCount, string strWhere, Dictionary<string,SqlSortEnum> orderBy )
         {
             //改写 order by is Asc,多条件排序
             //string sql = "select * from user where (1=1 and host='localhost') order by host desc limit 1,4";跟SQLServer不一样
@@ -30,11 +30,11 @@ namespace DotNet.DAL.Base
             if (!string.IsNullOrEmpty(strWhere))//有where条件
             {
                 sb.Append(" where ( ").Append(strWhere).Append(" )");
-                totalCount = AdoGetRecordCount(strWhere);
+                totalCount = GetRecordCount(strWhere);
             }
             else
             {
-                totalCount = AdoGetRecordCount(string.Empty);
+                totalCount = GetRecordCount(string.Empty);
             }
             if (null!=orderBy)//有Orderby条件
             {
@@ -48,7 +48,7 @@ namespace DotNet.DAL.Base
             }
             else
             {
-                sb.AppendFormat("order by {0} asc", AdoGetPrimarykeyByTableName(tableName));
+                sb.AppendFormat("order by {0} asc", GetPrimarykeyByTableName(tableName));
             }
             sb.AppendFormat(" limit {0},{1}", (pageIndex - 1)*pageSize, pageSize);
             //List<DbParameter> paramList = new List<DbParameter>() { new MySqlParameter("@strWhere", strWhere) };
@@ -59,7 +59,7 @@ namespace DotNet.DAL.Base
         /// </summary>
         /// <param name="tableName">要查询的表名</param>
         /// <returns>主键名:String</returns>
-        public override string AdoGetPrimarykeyByTableName(string tableName)
+        public override string GetPrimarykeyByTableName(string tableName)
         {
            string commandText = "select COLUMN_KEY,COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where table_name='" +
                                  tableName + "' AND COLUMN_KEY='PRI'";

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using DotNet.DAL.Factory;
 using DotNet.Entity.Enum;
 
-namespace DotNet.DAL.Base
+namespace DotNet.Common.SqlHelper
 {
     public class SqlHelper
     {
@@ -19,7 +18,7 @@ namespace DotNet.DAL.Base
         public SqlHelper(string connectionString, DbProviderTypeEnum providerType)
         {
             _connectionString = connectionString;
-            providerFactory = ProviderFactory.GetDbProviderFactory(providerType);
+            providerFactory = DataBaseDriverProviderFactory.GetDbProviderFactory(providerType);
             if (providerFactory == null)
             {
                 throw new ArgumentException("Can't load DbProviderFactory for given value of providerType");
@@ -175,6 +174,6 @@ namespace DotNet.DAL.Base
                 }
             }
             return command;
-        }
+        } 
     }
 }

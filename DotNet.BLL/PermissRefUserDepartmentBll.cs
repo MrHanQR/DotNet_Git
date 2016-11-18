@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using DotNet.Entity;
 using DotNet.Entity.Enum;
@@ -14,10 +15,12 @@ namespace DotNet.BLL
             {
                 if (Guid.TryParse(userIdArr[i], out userId))//是GUID
                 {
-                    var userModel = DbSession.PermissUserLoginDal.ORMLoadEntities(u => u.Id == userId && u.DeleteFlag == DelFlagEnum.Normal).FirstOrDefault();
+                    var userLoginContext = DbContext.Set<PermissUserLogin>();
+                    var userModel = userLoginContext.Single(u => u.Id == userId && u.DeleteFlag == DelFlagEnum.Normal);
                     if (userModel != null)//有这个用户
                     {
-                        var userDepModel = DbSession.PermissRefUserDepartmentDal.ORMLoadEntities(u => u.UserId == userModel.Id).FirstOrDefault();
+                        var userDepartmentContext = DbContext.Set<PermissRefUserDepartment>();
+                        var userDepModel = userDepartmentContext.Single(u => u.UserId == userModel.Id);
 
                         //1用户没部门 设置部门
                         if (userDepModel == null)
@@ -25,34 +28,27 @@ namespace DotNet.BLL
                             userDepModel = new PermissRefUserDepartment();
                             userDepModel.UserId = userModel.Id;
                             userDepModel.DepartmentId = depId;
-                            DbSession.PermissRefUserDepartmentDal.ORMAdd(userDepModel);
+                            userDepartmentContext.Add(userDepModel);
                         }
                         //2用户有部门 更新部门
                         else
                         {
                             userDepModel.DepartmentId = depId;
-                            DbSession.PermissRefUserDepartmentDal.ORMUpdate(userDepModel);
+                            DbContext.Entry(userDepModel).State = EntityState.Modified;
                         }
                     }
                     else
                     {
                         return false;
                     }
+                    
                 }
                 else
                 {
                     return false;
                 }
             }
-            if (DbSession.SaveChanges()>0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return DbContext.SaveChanges() > 0;
         }
-
     }
 }

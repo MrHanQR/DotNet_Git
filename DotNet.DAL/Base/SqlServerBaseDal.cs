@@ -4,7 +4,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using DotNet.DAL.Factory;
+using DotNet.Common.SqlHelper;
 using DotNet.Entity.Enum;
 
 namespace DotNet.DAL.Base
@@ -20,7 +20,7 @@ namespace DotNet.DAL.Base
         /// <param name="strWhere">where条件</param>
         /// <param name="orderBy">《列名,ASC/DESC》</param>
         /// <returns>DataTable</returns>
-        public override DataTable AdoGetTablePaged(int pageIndex, int pageSize, out int totalCount, string strWhere, Dictionary<string, SqlSortEnum> orderBy)
+        public override DataTable GetTablePaged(int pageIndex, int pageSize, out int totalCount, string strWhere, Dictionary<string, SqlSortEnum> orderBy)
         {
             T entity = new T();
             string tableName = entity.GetType().ToString();
@@ -33,17 +33,17 @@ namespace DotNet.DAL.Base
             }
             else
             {
-                sb.AppendFormat("select *,ROW_NUMBER() over(order by {0} asc", AdoGetPrimarykeyByTableName(tableName));
+                sb.AppendFormat("select *,ROW_NUMBER() over(order by {0} asc", GetPrimarykeyByTableName(tableName));
             }
             sb.AppendFormat(") as num from {0}", tableName);
             if (!string.IsNullOrEmpty(strWhere))//条件
             {
                 sb.Append(" where @strWhere");
-                totalCount = AdoGetRecordCount(strWhere);
+                totalCount = GetRecordCount(strWhere);
             }
             else
             {
-                totalCount = AdoGetRecordCount(string.Empty);
+                totalCount = GetRecordCount(string.Empty);
             }
             sb.AppendFormat(") as t where num between {0} and {1}", (pageIndex - 1) * pageSize + 1, pageIndex * pageSize);
             IList<DbParameter> paramList = new List<DbParameter>() { new SqlParameter("@strWhere", strWhere) };
@@ -55,7 +55,7 @@ namespace DotNet.DAL.Base
         /// </summary>
         /// <param name="tableName">要查询的表名</param>
         /// <returns>主键名:String</returns>
-        public override string AdoGetPrimarykeyByTableName(string tableName)
+        public override string GetPrimarykeyByTableName(string tableName)
         {
            string commandText = "EXEC sp_pkeys @table_name='" + tableName + "'";
            return SqlHelperFactory.GetSqlHelper().ExecuteDataTable(commandText, null).Rows[0]["COLUMN_NAME"].ToString();

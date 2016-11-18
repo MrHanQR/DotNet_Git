@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Configuration;
 using System.Web;
-using DotNet.DAL.Base;
 using DotNet.Entity.Enum;
 
-namespace DotNet.DAL.Factory
+namespace DotNet.Common.SqlHelper
 {
     public class SqlHelperFactory
     {
         private static readonly string ConnectionString =
-            ConfigurationManager.ConnectionStrings["DbConnectionString"].ConnectionString;
+           ConfigurationManager.ConnectionStrings["DbConnectionString"].ConnectionString;
         private static readonly string DbType = ConfigurationManager.AppSettings["dbTpye"];
         public SqlHelperFactory()
-        {}
+        { }
 
         public static SqlHelper GetSqlHelper()
         {
@@ -24,6 +23,6 @@ namespace DotNet.DAL.Factory
                 HttpContext.Current.Items.Add("SqlHelper", db);
             }
             return db;
-        }
+        } 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using DotNet.Common;
@@ -10,33 +11,32 @@ using DotNet.Entity;
 
 namespace DotNet.BLL
 {
-    public partial class PermissUserLoginBll:IPermissUserLoginBll
+    public partial class PermissUserLoginBll : IPermissUserLoginBll
     {
-        public IPermissUserDetailsDal UserDetailsDal { get; set; }
-
-        public override int ORMAdd(PermissUserLogin entity)
+        /// <summary>
+        /// 添加/注册用户
+        /// </summary>
+        /// <param name="entity">用户Model</param>
+        /// <returns></returns>
+        public override int Add(PermissUserLogin entity)
         {
             //密码加盐加密
-            entity.LoginPwd = DESEncryptHelper.GetStringMD5(entity.LoginId+ entity.LoginPwd);
-            return base.ORMAdd(entity);
+            entity.LoginPwd = DESEncryptHelper.GetStringMD5(entity.LoginId + entity.LoginPwd);
+            return base.Add(entity);
         }
-
         /// <summary>
         /// 逻辑删除一条记录
         /// DeleteFlag标记为Delted
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-       public bool ORMLogicDelete(string id)
+        public bool ORMLogicDelete(string id)
         {
             if (UpDateDeleteFlage(id))
             {
-                return DbSession.SaveChanges() > 0;
+                return DbContext.SaveChanges() > 0;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace DotNet.BLL
                     return false;
                 }
             }
-            return DbSession.SaveChanges() > 0;
+            return DbContext.SaveChanges() > 0;
         }
         /// <summary>
         /// 物理删除
@@ -64,44 +64,40 @@ namespace DotNet.BLL
         public bool ORMPhysicallyDelete(string id)
         {
             //拿到dbSession的DetailDal
-            UserDetailsDal = DbSession.PermissUserDetailsDal;
-            Guid guidId=new Guid(id);
+            DbSet<PermissUserDetails> userDetailsContext = DbContext.Set<PermissUserDetails>(); //DbSession.PermissUserDetailsDal;
+
+            Guid guidId = new Guid(id);
             //如果有这条记录，删除UserLogin表的记录
-            var userLoginModel = CurrentDal.ORMLoadEntities(u => u.Id == guidId).FirstOrDefault();
-            if (userLoginModel!=null)
+            var userLoginModel = LoadEntities(u => u.Id == guidId).FirstOrDefault();
+            if (userLoginModel != null)
             {
-                CurrentDal.ORMDelete(userLoginModel);
+                Delete(userLoginModel);
                 //如果有对应的UserDetails，删除UserDetails表的记录
-                var userDetailModel = UserDetailsDal.ORMLoadEntities(u => u.UserId == guidId).FirstOrDefault();
-                if (userDetailModel!=null)
+                var userDetailModel = userDetailsContext.FirstOrDefault(u => u.UserId == guidId);
+                if (userDetailModel != null)
                 {
-                    UserDetailsDal.ORMDelete(userDetailModel);
+                    userDetailsContext.Remove(userDetailModel);
                 }
-                if (DbSession.SaveChanges()>0)
+                //如果数据库删除成功了，把磁盘上的用户头像删除了
+                if (DbContext.SaveChanges() > 0)
                 {
                     //如果不是默认头像,把头像文件也删了
                     if (userLoginModel.PhotoPath != "default.png")
                     {
-                        string rootDir = @"~/Content/images/UserHeadPhoto/";
-                        string dir = System.Web.HttpContext.Current.Server.MapPath(rootDir);
-                        string filePath = dir + userLoginModel.PhotoPath;
-                        if (File.Exists(filePath))//有文件
-                        {
-                            File.Delete(filePath);
-                        }
+                        //todo 删除另外一台服务器上的文件
+                        //string rootDir = @"~/Content/images/UserHeadPhoto/";
+                        //string dir = System.Web.HttpContext.Current.Server.MapPath(rootDir);
+                        //string filePath = dir + userLoginModel.PhotoPath;
+                        //if (File.Exists(filePath))//有文件
+                        //{
+                        //    File.Delete(filePath);
+                        //}
                     }
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
                 return false;
             }
-            
+            return false;
         }
 
         /// <summary>
@@ -113,12 +109,9 @@ namespace DotNet.BLL
         {
             if (UpDatePassCheck(id))
             {
-                return DbSession.SaveChanges() > 0;
+                return DbContext.SaveChanges() > 0;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         /// <summary>
@@ -128,6 +121,7 @@ namespace DotNet.BLL
         /// <returns></returns>
         public bool ORMPassCheck(string[] idList)
         {
+
             for (int i = 0; i < idList.Length; i++)
             {
                 if (!UpDatePassCheck(idList[i]))
@@ -135,7 +129,7 @@ namespace DotNet.BLL
                     return false;
                 }
             }
-            return DbSession.SaveChanges() > 0;
+            return DbContext.SaveChanges() > 0;
         }
 
 
@@ -143,37 +137,41 @@ namespace DotNet.BLL
         /// <summary>
         /// 查到这条记录，将DeleteFlag的值修改
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="primaryKeyValue"></param>
         /// <returns></returns>
-        private bool UpDateDeleteFlage(string id)
+        private bool UpDateDeleteFlage(string primaryKeyValue)
         {
-            var model = CurrentDal.ORMLoadEntities(u => u.Id == new Guid(id)).FirstOrDefault();
-            if (model != null)
+            Guid id;
+            if (Guid.TryParse(primaryKeyValue, out id))
             {
-                model.DeleteFlag = DelFlagEnum.Deleted;
-                CurrentDal.ORMUpdate(model);
-                return true;
-            }
-            else
-            {
+                var model = GetModel(id);
+                if (model != null)
+                {
+                    model.DeleteFlag = DelFlagEnum.Deleted;
+                    DbContext.Entry(model).State = EntityState.Modified;
+                    return true;
+                }
                 return false;
             }
+            return false;
         }
 
-        private bool UpDatePassCheck(string id)
+        private bool UpDatePassCheck(string primaryKeyValue)
         {
-            var model = CurrentDal.ORMLoadEntities(u => u.Id == new Guid(id)).FirstOrDefault();
-            if (model != null)
+            Guid id;
+            if (Guid.TryParse(primaryKeyValue, out id))
             {
-                model.ApplyDate = DateTime.Now;
-                model.IsAble = true;
-                CurrentDal.ORMUpdate(model);
-                return true;
-            }
-            else
-            {
+                var model = GetModel(id);
+                if (model != null)
+                {
+                    model.ApplyDate = DateTime.Now;
+                    model.IsAble = true;
+                    DbContext.Entry(model).State = EntityState.Modified;
+                    return true;
+                }
                 return false;
             }
+            return false;
         }
     }
 }

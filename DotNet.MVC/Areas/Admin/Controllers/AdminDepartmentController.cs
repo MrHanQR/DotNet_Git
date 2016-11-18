@@ -20,7 +20,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             if (o == null || fatherNodeDic == null)
             {
                 //拿到所有的Department
-                List<PermissDepartment> allDepartments = DepartmentBll.ORMLoadEntities(d => true).OrderBy(d => d.Sort).ToList();
+                List<PermissDepartment> allDepartments = DepartmentBll.LoadEntities(d => true).OrderBy(d => d.Sort).ToList();
                 var fatherNodeList = (from d in allDepartments
                                       where d.HaveChild
                                       select d).ToList();
@@ -75,7 +75,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                 }
                 model.Sort = sort;
                 model.HaveChild = collection["DepHaveChild"].ToString() == "1";
-                if (DepartmentBll.ORMAdd(model) > 0)
+                if (DepartmentBll.Add(model) > 0)
                 {
                     CacheHelper.Remove("DepatrmentFatherNodeDic");
                     CacheHelper.Remove("DepartmentList");
@@ -112,9 +112,9 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                 else
                 {
                     //如果父节点是它的后代节点？错误
-                    List<PermissDepartment> allDepartments = DepartmentBll.ORMLoadEntities(d => true).ToList();
+                    List<PermissDepartment> allDepartments = DepartmentBll.LoadEntities(d => true).ToList();
                     var fatherNode =
-                        DepartmentBll.ORMLoadEntities(u => u.Id == new Guid(Request.Form["Id"].ToString())).FirstOrDefault();
+                        DepartmentBll.LoadEntities(u => u.Id == new Guid(Request.Form["Id"].ToString())).FirstOrDefault();
                     List<PermissDepartment> ProgenList = new List<PermissDepartment>();
                     DepartmentBll.GetProgenyDepartmentList(allDepartments, fatherNode, ProgenList);
                     var item = from d in ProgenList
@@ -127,7 +127,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                     model.ParentId = new Guid(Request.Form["ParentId"]);
                    
                 }
-                if (DepartmentBll.ORMUpdate(model))
+                if (DepartmentBll.Update(model))
                 {
                     CacheHelper.Remove("DepatrmentFatherNodeDic");
                     CacheHelper.Remove("DepartmentList");

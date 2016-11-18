@@ -111,6 +111,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomHelper.cs" />
     <Compile Include="RouteHelper.cs" />
+    <Compile Include="SqlHelper\DataBaseDriverProviderFactory.cs" />
+    <Compile Include="SqlHelper\SqlHelper.cs" />
+    <Compile Include="SqlHelper\SqlHelperFactory.cs" />
     <Compile Include="ValidateCodeHelper.cs" />
   </ItemGroup>
   <ItemGroup>

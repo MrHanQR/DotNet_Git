@@ -2,7 +2,7 @@
 using System.Web;
 using DotNet.Entity;
 
-namespace DotNet.DAL.Factory
+namespace DotNet.DALProvider
 {
     public class DbContextFactory
     {
@@ -21,6 +21,6 @@ namespace DotNet.DAL.Factory
                 HttpContext.Current.Items.Add("DbContext", db);
             }
             return db;
-        }
+        } 
     }
 }

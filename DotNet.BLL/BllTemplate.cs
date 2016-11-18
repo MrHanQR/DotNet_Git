@@ -15,98 +15,98 @@ namespace DotNet.BLL
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissButtonDal;
+            CurrentAdoDal = DbSession.PermissButtonDal;
         }
     } 	 
 	public partial class PermissDepartmentBll :BaseBll<PermissDepartment>,IPermissDepartmentBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissDepartmentDal;
+            CurrentAdoDal = DbSession.PermissDepartmentDal;
         }
     } 	 
 	public partial class PermissMenuBll :BaseBll<PermissMenu>,IPermissMenuBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissMenuDal;
+            CurrentAdoDal = DbSession.PermissMenuDal;
         }
     } 	 
 	public partial class PermissRefMenuButtonBll :BaseBll<PermissRefMenuButton>,IPermissRefMenuButtonBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissRefMenuButtonDal;
+            CurrentAdoDal = DbSession.PermissRefMenuButtonDal;
         }
     } 	 
 	public partial class PermissRefRoleMenuButtonBll :BaseBll<PermissRefRoleMenuButton>,IPermissRefRoleMenuButtonBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissRefRoleMenuButtonDal;
+            CurrentAdoDal = DbSession.PermissRefRoleMenuButtonDal;
         }
     } 	 
 	public partial class PermissRefUserDepartmentBll :BaseBll<PermissRefUserDepartment>,IPermissRefUserDepartmentBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissRefUserDepartmentDal;
+            CurrentAdoDal = DbSession.PermissRefUserDepartmentDal;
         }
     } 	 
 	public partial class PermissRefUserMenuButtonBll :BaseBll<PermissRefUserMenuButton>,IPermissRefUserMenuButtonBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissRefUserMenuButtonDal;
+            CurrentAdoDal = DbSession.PermissRefUserMenuButtonDal;
         }
     } 	 
 	public partial class PermissRefUserRoleBll :BaseBll<PermissRefUserRole>,IPermissRefUserRoleBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissRefUserRoleDal;
+            CurrentAdoDal = DbSession.PermissRefUserRoleDal;
         }
     } 	 
 	public partial class PermissRoleBll :BaseBll<PermissRole>,IPermissRoleBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissRoleDal;
+            CurrentAdoDal = DbSession.PermissRoleDal;
         }
     } 	 
 	public partial class PermissUserDetailsBll :BaseBll<PermissUserDetails>,IPermissUserDetailsBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissUserDetailsDal;
+            CurrentAdoDal = DbSession.PermissUserDetailsDal;
         }
     } 	 
 	public partial class PermissUserLoginBll :BaseBll<PermissUserLogin>,IPermissUserLoginBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.PermissUserLoginDal;
+            CurrentAdoDal = DbSession.PermissUserLoginDal;
         }
     } 	 
 	public partial class StateBugBll :BaseBll<StateBug>,IStateBugBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.StateBugDal;
+            CurrentAdoDal = DbSession.StateBugDal;
         }
     } 	 
 	public partial class StateLoginLogBll :BaseBll<StateLoginLog>,IStateLoginLogBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.StateLoginLogDal;
+            CurrentAdoDal = DbSession.StateLoginLogDal;
         }
     } 	 
 	public partial class StateOperateLogBll :BaseBll<StateOperateLog>,IStateOperateLogBll
     {
        public override void SetCurrentDal()
         {
-            CurrentDal = DbSession.StateOperateLogDal;
+            CurrentAdoDal = DbSession.StateOperateLogDal;
         }
     } 	 
 }

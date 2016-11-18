@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Data.Common;
 using DotNet.Entity.Enum;
 
-namespace DotNet.DAL.Factory
+namespace DotNet.Common.SqlHelper
 {
-    public class ProviderFactory
+    public class DataBaseDriverProviderFactory
     {
         private static Dictionary<DbProviderTypeEnum, string> providerInvariantNames = new Dictionary<DbProviderTypeEnum, string>();
         private static Dictionary<DbProviderTypeEnum, DbProviderFactory> providerFactoies = new Dictionary<DbProviderTypeEnum, DbProviderFactory>(20);
-        static ProviderFactory()
+        static DataBaseDriverProviderFactory()
         {
             //加载已知的数据库访问类的程序集  
             providerInvariantNames.Add(DbProviderTypeEnum.SqlServer, "System.Data.SqlClient");
@@ -67,6 +67,6 @@ namespace DotNet.DAL.Factory
                 throw ex;
             }
             return factory;
-        }
+        }  
     }
 }

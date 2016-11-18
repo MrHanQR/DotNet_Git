@@ -59,12 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseDal.cs" />
-    <Compile Include="Factory\DbContextFactory.cs" />
-    <Compile Include="Factory\ProviderFactory.cs" />
-    <Compile Include="Base\SqlHelper.cs" />
     <Compile Include="Base\MySqlBaseDal.cs" />
     <Compile Include="Base\OracleBaseDal.cs" />
-    <Compile Include="Factory\SqlHelperFactory.cs" />
     <Compile Include="Base\SqlServerBaseDal.cs" />
     <Compile Include="DalTemplate.cs">
       <AutoGen>True</AutoGen>
@@ -85,6 +81,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNet.Common\DotNet.Common.csproj">
+      <Project>{EC9C0F52-C3F6-4AD7-A75B-944C7391E020}</Project>
+      <Name>DotNet.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotNet.Entity\DotNet.Entity.csproj">
       <Project>{029B039E-7916-40AA-A8B9-029540752B8B}</Project>
       <Name>DotNet.Entity</Name>

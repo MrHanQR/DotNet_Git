@@ -19,7 +19,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             object o = CacheHelper.Get("RoleList");
             if (o == null)
             {
-                var roleList = RoleBll.ORMLoadEntities(r => true).ToList();
+                var roleList = RoleBll.LoadEntities(r => true).ToList();
                 List<RoleViewModel> roleViewModelList = new List<RoleViewModel>();
                 foreach (var item in roleList)
                 {
@@ -29,7 +29,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                     model.Description = item.Description;
                     model.AddDate = item.AddDate;
                     model.ModifyDate = item.ModifyDate;
-                    model.Department = DepartmentBll.ORMLoadEntities(d => d.Id == item.DepartmentId).FirstOrDefault().DepartmentName;
+                    model.Department = DepartmentBll.LoadEntities(d => d.Id == item.DepartmentId).FirstOrDefault().DepartmentName;
                     roleViewModelList.Add(model);
                 }
                 o = roleViewModelList;
@@ -38,7 +38,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             object o2 = CacheHelper.Get("DepartmentList");
             if (o2 == null)
             {
-                List<PermissDepartment> allDepartments = DepartmentBll.ORMLoadEntities(d => true).OrderBy(d => d.Sort).ToList();
+                List<PermissDepartment> allDepartments = DepartmentBll.LoadEntities(d => true).OrderBy(d => d.Sort).ToList();
                 o2 = DepartmentBll.CreateDepartmentTree(allDepartments, null);
                 CacheHelper.Add("DepartmentList", o2, DateTime.Now.AddMinutes(20));
             }
@@ -59,16 +59,16 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                 if (id.Length == 36)//如果DepartmentId是Guid
                 {
                     Guid depId = new Guid(id);
-                    var depModel = DepartmentBll.ORMLoadEntities(d => d.Id == depId).FirstOrDefault();
+                    var depModel = DepartmentBll.LoadEntities(d => d.Id == depId).FirstOrDefault();
                     if (depModel != null)//如果这个GUID存在
                     {
                         model.DepartmentId = depId;
-                        var rolemodel = RoleBll.ORMLoadEntities(r => r.RoleName == roleName
+                        var rolemodel = RoleBll.LoadEntities(r => r.RoleName == roleName
                                                                     && r.DepartmentId == depId).FirstOrDefault();
                         //如果这个部门下没有这个角色
                         if (rolemodel != null)
                         {
-                            if (RoleBll.ORMAdd(model) > 0)
+                            if (RoleBll.Add(model) > 0)
                             {
                                 CacheHelper.Remove("RoleList");
                                 return Content("1");
@@ -92,7 +92,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             if (!string.IsNullOrEmpty(roleId))
             {
                 
-                var roleModel = RoleBll.ORMLoadEntities(r => r.Id == new Guid(roleId)).FirstOrDefault();
+                var roleModel = RoleBll.LoadEntities(r => r.Id == new Guid(roleId)).FirstOrDefault();
                 if (roleModel != null)//存在该实体
                 {
                     roleModel.RoleName = collection["EditRoleName"];
@@ -101,7 +101,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                     string depId = collection["DepId"];
                     if (depId == "-1")//没变
                     {
-                        if (RoleBll.ORMUpdate(roleModel))
+                        if (RoleBll.Update(roleModel))
                         {
                             CacheHelper.Remove("RoleList");
                             return Content("1");
@@ -110,11 +110,11 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                     else if (depId.Length == 36)//一个新的GUID
                     {
                         //判断是否存在这个部门
-                       var depModel= DepartmentBll.ORMLoadEntities(d => d.Id == new Guid(depId)).FirstOrDefault();
+                       var depModel= DepartmentBll.LoadEntities(d => d.Id == new Guid(depId)).FirstOrDefault();
                         if (depModel!=null)
                         {
                             roleModel.DepartmentId=new Guid(depId);
-                            if (RoleBll.ORMUpdate(roleModel))
+                            if (RoleBll.Update(roleModel))
                             {
                                 CacheHelper.Remove("RoleList");
                                 return Content("1");

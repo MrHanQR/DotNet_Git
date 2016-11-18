@@ -24,7 +24,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             }
             else//cookie里有
             {
-                var user = UserLoginBll.ORMLoadEntities(u => u.LoginId == loginName && u.LoginPwd == loginPwd).FirstOrDefault();
+                var user = UserLoginBll.LoadEntities(u => u.LoginId == loginName && u.LoginPwd == loginPwd).FirstOrDefault();
                 if (user == null)//密码已经更改，无法登陆
                 {
                     return View();
@@ -63,7 +63,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                 //第二步：校验用户名密码
                 //        密码要加密
                 string md5Pwd = DESEncryptHelper.GetStringMD5(loginPwd);
-                var user = UserLoginBll.ORMLoadEntities(u => (u.LoginId == loginId || u.UserEmail == loginId)
+                var user = UserLoginBll.LoadEntities(u => (u.LoginId == loginId || u.UserEmail == loginId)
                                                        && u.LoginPwd == md5Pwd
                                                        && u.IsAble == true).FirstOrDefault();
                 if (user == null)
@@ -106,7 +106,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
         public ActionResult Registe(string usernamesignup, string useridsignup, string emailsignup, string passwordsignup)
         {
             var user =
-                UserLoginBll.ORMLoadEntities(u => (u.LoginId == useridsignup || u.UserEmail == emailsignup)).FirstOrDefault();
+                UserLoginBll.LoadEntities(u => (u.LoginId == useridsignup || u.UserEmail == emailsignup)).FirstOrDefault();
             if (user != null)//已有
             {
                 return Content("对不起，账号 或 Email已被占用");
@@ -121,7 +121,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                 modelUser.IsAble = false;
                 modelUser.AddDate = null;
                 modelUser.PhotoPath = "default.png";
-                int r = UserLoginBll.ORMAdd(modelUser);
+                int r = UserLoginBll.Add(modelUser);
                 if (r > 0)
                 {
                     return Content("ok");

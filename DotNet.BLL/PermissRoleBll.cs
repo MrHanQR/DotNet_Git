@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using DotNet.Entity;
 
 namespace DotNet.BLL
 {
@@ -14,7 +16,7 @@ namespace DotNet.BLL
         {
             if (!DeleteAny(id))
             {
-                return DbSession.SaveChanges() > 0;
+                return DbContext.SaveChanges() > 0;
             }
             else
             {
@@ -37,7 +39,7 @@ namespace DotNet.BLL
                     return false;
                 }
             }
-            return DbSession.SaveChanges() > 0;
+            return DbContext.SaveChanges() > 0;
         }
 
         private bool DeleteAny(string strId)
@@ -46,17 +48,16 @@ namespace DotNet.BLL
             if (Guid.TryParse(strId,out id ))
             {
                 //删除Role
-                CurrentDal.ORMDeleteById(id);
+                Delete(id);
                 //删除RoleMenuButton
-                DbSession.PermissRefRoleMenuButtonDal.ORMDeleteList(w => w.RoleId == id);
+                var roleMenuButtonContext = DbContext.Set<PermissRefRoleMenuButton>();
+                roleMenuButtonContext.RemoveRange(roleMenuButtonContext.Where(w => w.RoleId == id));
                 //删除UserRole
-                DbSession.PermissRefUserRoleDal.ORMDeleteList(u => u.RoleId == id);
+                var userRoleContext = DbContext.Set<PermissRefUserRole>();
+                userRoleContext.RemoveRange(userRoleContext.Where(u => u.RoleId == id));
                 return true;
             }
-            else
-            {
-               return false;
-            }
+           return false;
         }
     }
 }

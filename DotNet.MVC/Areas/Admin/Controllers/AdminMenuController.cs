@@ -22,7 +22,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             if (o1 == null || o2 == null)//如果没有这俩的缓存
             {
                 //构建tbMenu集合和下拉列表集合
-                List<PermissMenu> allMenus = MenuBll.ORMLoadEntities(u => true).OrderBy(u => u.MenuLevel).ThenBy(u => u.Sort).ToList();
+                List<PermissMenu> allMenus = MenuBll.LoadEntities(u => true).OrderBy(u => u.MenuLevel).ThenBy(u => u.Sort).ToList();
                 var fatherMenuList = (from r in allMenus
                                       where r.HaveChild == true
                                       select r);
@@ -61,13 +61,13 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                 else
                 {
                     model.ParentId = new Guid(parentId);
-                    model.MenuLevel = MenuBll.ORMGetModel(parentId).MenuLevel + 1;
+                    model.MenuLevel = MenuBll.GetModel(parentId).MenuLevel + 1;
                 }
                 model.HaveChild = collection["MenuHaveChild"] == "1";
                 model.ControllerNameCode = collection["MenuControllerName"];
                 model.ActionNameCode = collection["MenuActionName"];
                 //model.AddDate = DateTime.Now;
-                if (MenuBll.ORMAdd(model) > 0)
+                if (MenuBll.Add(model) > 0)
                 {
                     CacheHelper.Remove("MenuList");
                     CacheHelper.Remove("MenuDpdList");
@@ -100,9 +100,9 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                 else
                 {
                     model.ParentId = new Guid(parentId);
-                    model.MenuLevel = MenuBll.ORMGetModel(parentId).MenuLevel + 1;
+                    model.MenuLevel = MenuBll.GetModel(parentId).MenuLevel + 1;
                 }
-                if (MenuBll.ORMUpdate(model))
+                if (MenuBll.Update(model))
                 {
                     CacheHelper.Remove("MenuList");
                     CacheHelper.Remove("MenuDpdList");
@@ -177,9 +177,9 @@ namespace DotNet.MVC.Areas.Admin.Controllers
             //拿到菜单Id
             string menuId = Request.Form["menuId"];
             //查询出该菜单已有的Button
-            var menuButtonList = (from c in MenuButtonBll.ORMLoadEntities(u => u.MenuId == new Guid(menuId))
+            var menuButtonList = (from c in MenuButtonBll.LoadEntities(u => u.MenuId == new Guid(menuId))
                                   select c.ButtonId).ToList();
-            var buttonList = ButtonBll.ORMLoadEntities(u => true).OrderBy(u => u.Sort).ToList();
+            var buttonList = ButtonBll.LoadEntities(u => true).OrderBy(u => u.Sort).ToList();
             StringBuilder sb = new StringBuilder();
             int cellCount = 0;
             sb.Append("<table><tr>");

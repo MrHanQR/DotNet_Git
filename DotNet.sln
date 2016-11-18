@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.Entity", "DotNet.Entity\DotNet.Entity.csproj", "{029B039E-7916-40AA-A8B9-029540752B8B}"
 EndProject
@@ -32,6 +32,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05_WEB", "05_WEB", "{518D29FF-6902-499C-8B69-E15F5A3F3FC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.Web", "DotNet.Web\DotNet.Web.csproj", "{52214AB6-37D3-43AA-9AC8-C215A0E72B25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.DALProvider", "DotNet.DALProvider\DotNet.DALProvider.csproj", "{3B9140B0-9863-4BC7-8933-7D5797433233}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{52214AB6-37D3-43AA-9AC8-C215A0E72B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52214AB6-37D3-43AA-9AC8-C215A0E72B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52214AB6-37D3-43AA-9AC8-C215A0E72B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B9140B0-9863-4BC7-8933-7D5797433233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B9140B0-9863-4BC7-8933-7D5797433233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B9140B0-9863-4BC7-8933-7D5797433233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B9140B0-9863-4BC7-8933-7D5797433233}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,5 +99,6 @@ Global
 		{A4F3C4D9-E399-41A8-996B-5AF509F5E17C} = {BA157350-771F-4795-895E-9954EB8B2129}
 		{B7B0B814-8FAC-4F3E-91D5-E547F96295F8} = {518D29FF-6902-499C-8B69-E15F5A3F3FC1}
 		{EEC46E2E-99C6-4278-B138-71AB7A0CB48F} = {518D29FF-6902-499C-8B69-E15F5A3F3FC1}
+		{3B9140B0-9863-4BC7-8933-7D5797433233} = {539BC9AA-D25B-4AF6-A5FE-70CF6330AC2F}
 	EndGlobalSection
 EndGlobal

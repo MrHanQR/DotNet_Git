@@ -18,7 +18,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
         // GET: /AdminHome/
         public ActionResult Index()
         {
-            List<PermissMenu> allMenuList = MenuBll.ORMLoadEntities(u => true).ToList();
+            List<PermissMenu> allMenuList = MenuBll.LoadEntities(u => true).ToList();
             //拿到一级菜单
             var firstLeveMenus = (from m in allMenuList
                                   where m.MenuLevel == 1
@@ -49,7 +49,7 @@ namespace DotNet.MVC.Areas.Admin.Controllers
                 {
                     string loginId = ControllerContext.HttpContext.Request.Cookies["N"].Value;
                     string loginPwd = ControllerContext.HttpContext.Request.Cookies["W"].Value;
-                    userSession = UserLoginBll.ORMLoadEntities(u => u.LoginId == loginId && u.LoginPwd == loginPwd).FirstOrDefault();
+                    userSession = UserLoginBll.LoadEntities(u => u.LoginId == loginId && u.LoginPwd == loginPwd).FirstOrDefault();
                     CacheHelper.Add("mysessionId", userSession);
                 }
                 ViewData["userSession"] = userSession;

@@ -22,7 +22,7 @@ namespace DotNet.Web.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            List<PermissMenu> allMenuList = _menuBll.ORMLoadEntities(u => true).ToList();
+            List<PermissMenu> allMenuList = _menuBll.LoadEntities(u => true).ToList();
             //拿到一级菜单
             var firstLevelMenus = (from m in allMenuList
                                   where m.MenuLevel == 1
