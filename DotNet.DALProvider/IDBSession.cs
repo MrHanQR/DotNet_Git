@@ -4,11 +4,11 @@
 using DotNet.IDAL;
 /**        数据库会话接口类-自动生成
  * 项目名：DotNet      程序集名：DotNet.DBProvide
- * 制作人：韩庆瑞      生成时间：11/01/2016 15:06:21
+ * 制作人：韩庆瑞      生成时间：11/17/2016 14:31:46
  * 生成工具：T4模板
  * 描述：
 **/
-namespace DotNet.DBProvide
+namespace DotNet.DALProvider
 {
 	public interface IDBSession
 	{ 
@@ -26,6 +26,6 @@ namespace DotNet.DBProvide
 	   IStateBugDal StateBugDal { get; } 
 	   IStateLoginLogDal StateLoginLogDal { get; } 
 	   IStateOperateLogDal StateOperateLogDal { get; } 
-       int SaveChanges();
+       
     }
 }

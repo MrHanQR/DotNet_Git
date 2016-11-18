@@ -1,8 +1,6 @@
 ﻿using System.Web;
-using DotNet.DAL.Base;
-using DotNet.IDAL;
 
-namespace DotNet.DBProvide
+namespace DotNet.DALProvider
 {
     public class DBSessionFactory
     {

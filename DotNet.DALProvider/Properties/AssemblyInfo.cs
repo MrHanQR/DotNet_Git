@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("DotNet.DBProvide")]
+[assembly: AssemblyTitle("DotNet.DALProvider")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DotNet.DBProvide")]
+[assembly: AssemblyProduct("DotNet.DALProvider")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("e8d05575-5550-4f3d-a87b-5619757b15cf")]
+[assembly: Guid("48cdbe23-46b1-4514-929b-1b0d495dd80a")]
 
 // 程序集的版本信息由下面四个值组成: 
 //

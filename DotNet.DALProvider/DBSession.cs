@@ -2,14 +2,13 @@
   
 
 using DotNet.IDAL;
-using DotNet.DAL.Factory;
 /**        数据库会话类-自动生成
  * 项目名：DotNet      程序集名：DotNet.DBProvide
- * 制作人：韩庆瑞      生成时间：11/01/2016 15:06:14
+ * 制作人：韩庆瑞      生成时间：11/17/2016 14:31:17
  * 生成工具：T4模板
  * 描述：
 **/
-namespace DotNet.DBProvide
+namespace DotNet.DALProvider
 {
     public partial class DBSession:IDBSession
 	{   
@@ -181,14 +180,6 @@ namespace DotNet.DBProvide
 				return _StateOperateLogDal;
 			}
 		}
-        /// <summary>
-        /// 保存ORM执行的操作
-        /// </summary>
-        /// <returns>受影响的行数</returns>
-		public int SaveChanges()
-		{
-			//让当前的上下文进行提交(一次请求一个上下文)
-			return DbContextFactory.GetCurrentDbContext().SaveChanges();
-		}
+       
     }
 }
